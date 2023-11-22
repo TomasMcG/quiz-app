@@ -11,6 +11,12 @@ repositories {
 
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation("com.thoughtworks.xstream:xstream:1.4.18")
+    //json
+    implementation("org.codehaus.jettison:jettison:1.4.1")
+    //yaml
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.3")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 }
 
 test {
