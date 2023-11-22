@@ -113,6 +113,24 @@ fun deleteQuestion(){
     logger.info{"deleteQuestion() function invoked"}
 }
 
+fun addRound(){
+    logger.info{"addRound() function invoked"}
+    //these info functions are lambdas
+}
+
+fun listRounds(){
+    logger.info{"listRounds() function invoked"}
+}
+
+fun updateRound(){
+    logger.info{"updateRound() function invoked"}
+}
+
+fun deleteRound(){
+    logger.info{"deleteRound() function invoked"}
+}
+
+
 fun exitApp(){
     println("Exiting...bye")
     exit(0)
