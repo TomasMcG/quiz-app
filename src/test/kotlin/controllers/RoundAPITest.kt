@@ -40,13 +40,13 @@ class RoundAPITest {
 
     @AfterEach
     fun tearDown() {
-        learnKotlin = null
-        summerHoliday = null
-        codeApp = null
-        testApp = null
-        swim = null
-        populatedNotes = null
-        emptyNotes = null
+        geographyRound = null
+        historyRound = null
+        televisionRound = null
+        videoGameRound = null
+        populatedRounds = null
+        emptyRounds = null
+
 
     }
 
