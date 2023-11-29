@@ -59,7 +59,7 @@ fun runMenu(){
             7 -> updateQuestion()
             8 -> deleteQuestion()
             9 -> addRound()
-            10 -> listRounds()
+            10 -> println(roundAPI.listAlRounds())
             11 -> updateRound()
             12  -> deleteRound()
 

@@ -14,9 +14,9 @@ class RoundAPI (serializer: Serializer){
         roundToAdd.roundId = getId()
         return rounds.add(roundToAdd)
     }
-    fun listAllNotes(): String =
+    fun listAlRounds(): String =
         if (rounds.isEmpty())   //can remove curly braces for single line of code for if
-            "No notes stored"
+            "No rounds stored"
         else
             formatListString(rounds)
 
