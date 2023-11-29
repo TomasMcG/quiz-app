@@ -185,16 +185,19 @@ fun updateRound() {
             ScannerInput.readNextInt("Please choose the id of the round that you would like to update")
 
         if (roundAPI.isValidIndex(indexToUpdate)) {
-            val roundToEdit: Rounds? = roundAPI.findRounds(indexToUpdate)
+            var roundToEdit: Rounds? = roundAPI.findRounds(indexToUpdate)
             if (roundToEdit != null) {
                 // Display the current note details so you can decided what you want to change
 
             val roundAttributeToUpdate = ScannerInput.readNextInt("Please choose which attribute you would like to update?")
                 do{
                     when(val option = roundAttributeMenu(roundToEdit)){
-                        1 -> roundAPI.updateRoundTitle(roundToEdit)
-                        2 -> roundAPI.updateRoundId(roundToEdit)
-                        3 -> roundAPI.updateQuestionsAttempted(roundToEdit)
+                        1 -> {var newTitle: String = ScannerInput.readNextLine("Please enter the new title")
+                            roundAPI.updateRoundTitle(roundToEdit,newTitle)}
+                        2 ->{ var newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
+                            roundAPI.updateRoundId(roundToEdit,newRoundId)}
+                        3 -> { var newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new round id")
+                            roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
                         4 -> updateQuestion()
                         99 -> updateRound()
                         0 -> mainMenu()

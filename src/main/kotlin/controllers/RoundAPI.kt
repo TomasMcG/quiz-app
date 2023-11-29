@@ -43,11 +43,12 @@ class RoundAPI (serializerType: Serializer){
 }
 
 
-    fun updateRoundTitle(roundToEdit: Rounds){
-
+    fun updateRoundTitle(roundToEdit: Rounds,newTitle: String){
+        roundToEdit.roundTitle = newTitle
     }
-    fun updateRoundId(roundToEdit: Rounds){}
-    fun updateQuestionsAttempted(roundToEdit: Rounds){}
+    fun updateRoundId(roundToEdit: Rounds,newRoundId: Int){roundToEdit.roundId = newRoundId}
+    fun updateQuestionsAttempted(roundToEdit: Rounds, newNoQuestionsAttempted: Int){roundToEdit.questionsAttempted = newNoQuestionsAttempted
+    }
 
 
     @Throws(Exception::class)
