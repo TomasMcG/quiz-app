@@ -67,6 +67,28 @@ class RoundAPITest {
 
         }
         }
+    @Nested
+    inner class ListRounds {
+
+        @Test
+        fun `listAllRounds returns No Rounds Stored message when ArrayList is empty`() {
+            assertEquals(0, emptyRounds!!.numberOfRounds())
+            assertTrue(emptyRounds!!.listAllRounds().lowercase().contains("no rounds"))
+        }
+
+        @Test
+        fun `listAllRounds returns Rounds when ArrayList has Rounds stored`() {
+            assertEquals(4, populatedRounds!!.numberOfRounds())
+            val roundsString = populatedRounds!!.listAllRounds().lowercase()
+            assertTrue(roundsString.contains("geography"))
+            assertTrue(roundsString.contains("history"))
+            assertTrue(roundsString.contains("television"))
+            assertTrue(roundsString.contains("video"))
+
+
+        }
+    }
+
 
 
 
