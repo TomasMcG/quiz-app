@@ -49,7 +49,6 @@ data class Rounds(
             foundQuestions.questionId = newQuestions.questionId
             foundQuestions.questionText = newQuestions.questionText
             foundQuestions.correctAnswer = newQuestions.correctAnswer
-            foundQuestions.answer = newQuestions.answer
             return true
         }
 
