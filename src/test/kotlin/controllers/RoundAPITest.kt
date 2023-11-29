@@ -50,6 +50,23 @@ class RoundAPITest {
 
     }
 
+    @Nested
+    inner class AddRounds{
+        @Test
+        fun addingRoundsToPopulatedAndEmpty() {
+            val newRound = Rounds(1, "newRound", 4)
+            assertEquals(4, populatedRounds!!.numberOfRounds())
+            assertTrue(populatedRounds!!.add(newRound))
+            assertEquals(5, populatedRounds!!.numberOfRounds())
+            assertEquals(newRound, populatedRounds!!.findRounds(populatedRounds!!.numberOfRounds() - 1))
+
+            assertEquals(0, emptyRounds!!.numberOfRounds())
+            assertTrue(emptyRounds!!.add(newRound))
+            assertEquals(1, emptyRounds!!.numberOfRounds())
+            assertEquals(newRound, emptyRounds!!.findRounds(emptyRounds!!.numberOfRounds() - 1))
+
+        }
+        }
 
 
 
