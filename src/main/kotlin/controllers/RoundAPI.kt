@@ -2,6 +2,7 @@ package controllers
 
 import models.Rounds
 import persistence.Serializer
+import utils.Utilities
 import utils.Utilities.formatListString
 
 class RoundAPI (serializerType: Serializer){
@@ -21,6 +22,13 @@ class RoundAPI (serializerType: Serializer){
             formatListString(rounds)
     fun numberOfRounds(): Int { return rounds.size}
 
+    fun deleteRound(indexToDelete: Int): Rounds?{
+
+            return if (Utilities.isValidListIndex(indexToDelete, rounds)){
+                rounds.removeAt(indexToDelete)
+            } else null
+
+    }
 
     @Throws(Exception::class)
     fun load() {
