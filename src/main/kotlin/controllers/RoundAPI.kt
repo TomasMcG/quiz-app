@@ -30,8 +30,10 @@ class RoundAPI (serializerType: Serializer){
             } else null
 
     }
-    fun isValidIndex(index: Int) : Boolean{
-        return Utilities.isValidListIndex(index, rounds)
+    fun isValidIndex(roundId: Int): Boolean {
+        // Assuming `rounds` is the list of objects with a `roundId` attribute
+        val validRoundIds = rounds.map { it.roundId }
+        return roundId in validRoundIds
     }
 
     fun findRounds(roundId: Int): Rounds? {

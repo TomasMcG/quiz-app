@@ -162,8 +162,8 @@ fun deleteQuestion(){
 fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
-    val roundTitle = ScannerInput.readNextLine("Enter a category for the note: ")
-    var questionsAttempted = ScannerInput.readNextInt("Enter a category for the note: ")
+    val roundTitle = ScannerInput.readNextLine("Enter a title for the round: ")
+    var questionsAttempted = ScannerInput.readNextInt("Enter the number of attempts: ")
     val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle, questionsAttempted = questionsAttempted))
 
     if (isAdded) {
@@ -189,9 +189,9 @@ fun updateRound() {
             if (roundToEdit != null) {
                 // Display the current note details so you can decided what you want to change
 
-            val roundAttributeToUpdate = ScannerInput.readNextInt("Please choose which attribute you would like to update?")
-                do{
-                    when(val option = roundAttributeMenu(roundToEdit)){
+           var option: Int
+                do{option = roundAttributeMenu(roundToEdit)
+                    when(option){
                         1 -> {var newTitle: String = ScannerInput.readNextLine("Please enter the new title")
                             roundAPI.updateRoundTitle(roundToEdit,newTitle)}
                         2 ->{ var newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
@@ -202,8 +202,9 @@ fun updateRound() {
                         99 -> updateRound()
                         0 -> mainMenu()
 
-                       //Eventually put in update questions here
-                    }}while(true)
+                         // Add this line to clear the input buffer
+                        //Eventually put in update questions here
+                    }}while(option!= 4 && option != 99 && option != 0)
 
                 }
         }
@@ -213,7 +214,7 @@ fun updateRound() {
     }
 
 
-fun roundAttributeMenu(roundToEdit:Rounds ) = ScannerInput.readNextInt(
+fun roundAttributeMenu(roundToEdit:Rounds ):Int = ScannerInput.readNextInt(
     """
         Please Choose the attribute you would like to update
         1.Title: ${roundToEdit.roundTitle}
