@@ -33,6 +33,18 @@ class RoundAPI (serializerType: Serializer){
         return Utilities.isValidListIndex(index, rounds)
     }
 
+    fun findRounds(index: Int): Rounds?{
+
+
+        return if(Utilities.isValidListIndex(index, rounds)){
+            rounds[index]
+        }
+        else null
+
+
+
+}
+
 
     @Throws(Exception::class)
     fun load() {
