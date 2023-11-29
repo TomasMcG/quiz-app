@@ -1,5 +1,8 @@
 package models
 
+import utils.Utilities
+import utils.Utilities.formatListString
+
 data class Rounds(
     var roundId: Int, var questionsAttempted: Int ,
     var questions: ArrayList<Questions>
@@ -13,6 +16,14 @@ data class Rounds(
         return questions.add(question)
     }
 
+
+
+
+
+
+
+
+
     fun numberOfQuestions() = questions.size
 
     fun findOne(id: Int): Questions? {
@@ -22,6 +33,13 @@ data class Rounds(
     fun deleteQuestions(id: Int): Boolean {
         return questions.removeIf { question -> question.questionId == id }
     }
+
+    fun listAllQuestions(): String =
+        if (questions.isEmpty())   //can remove curly braces for single line of code for if
+            "No notes stored"
+        else
+            formatListString(questions)
+
 
 
     fun updateQuestions(id: Int, newQuestions: Questions): Boolean {
@@ -53,5 +71,8 @@ data class Rounds(
     }
     change how update works later.
     */
+
+
+
 
 }

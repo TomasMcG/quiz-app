@@ -37,5 +37,14 @@ object Utilities {
      * @return `true` if the content length is within the valid range, `false` otherwise.
      */
 
+    @JvmStatic
+    fun formatListString(notesToFormat: List<Any>): String =
+        notesToFormat
+            .joinToString(separator = "\n") { any ->  "$any" }
+
+    @JvmStatic
+    fun formatSetString(itemsToFormat: ArrayList<Any>): String =
+        itemsToFormat
+            .joinToString(separator = "\n") { any ->  "\t$any" }
 
 }
