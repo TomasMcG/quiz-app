@@ -1,7 +1,10 @@
+import models.Questions
+import models.Rounds
 import mu.KotlinLogging
 
 import utils.ScannerInput
 import java.lang.System.exit
+import java.time.LocalDate
 
 private val logger = KotlinLogging.logger {}
 fun main(args: Array<String>) {
@@ -47,7 +50,7 @@ fun runMenu(){
             2 -> listPlayers()
             3 -> updatePlayer()
             4 -> deletePlayer()
-            5 -> addQuestion()
+            //5 -> addQuestionToRound()
             6 -> listQuestions()
             7 -> updateQuestion()
             8 -> deleteQuestion()
@@ -108,10 +111,37 @@ fun deletePlayer(){
     logger.info{"deletePlayer() function invoked"}
 }
 
-fun addQuestion(){
-    logger.info{"addQuestion() function invoked"}
-    //these info functions are lambdas
-}
+//-------------------------------------------------------------------
+/*private fun addQuestionToRound() {
+    val round: Rounds? = askUserToChooseRound()
+    if (round != null) {
+        if (round.addQuestion(Questions(1,
+                questionText = ScannerInput.readNextLine("\t Possible Questions: "),
+                correctAnswer = ScannerInput.readNextLine("\t Possible Answers: ")
+
+            )))
+
+            println("Add Successful!")
+        else println("Add NOT Successful")
+    }
+}*/
+
+
+/*private fun askUserToChooseRound(): Rounds? {
+    listRounds()
+return Rounds(1,2,)}
+    if (roundAPI.numberOfrounds() > 0) {
+        val round = roundAPI.findRound(ScannerInput.readNextInt("\nEnter the id of the round: "))
+        if (round != null) {
+            return round
+        } else {
+            println("Round id is not valid")
+        }
+    }
+    return null //selected note is not active
+}*/
+
+
 
 fun listQuestions(){
     logger.info{"listQuestions() function invoked"}
@@ -124,7 +154,7 @@ fun updateQuestion(){
 fun deleteQuestion(){
     logger.info{"deleteQuestion() function invoked"}
 }
-
+//------------------------------------------------------------------------------------
 fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
