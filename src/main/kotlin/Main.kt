@@ -158,7 +158,19 @@ fun deleteQuestion(){
 fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
+    val noteTitle = ScannerInput.readNextLine("Enter a title for the note: ")
+    val notePriority = ScannerInput.readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
+    val noteCategory = ScannerInput.readNextLine("Enter a category for the note: ")
+    val isAdded = noteAPI.add(Note(noteTitle = noteTitle, notePriority = notePriority, noteCategory = noteCategory))
+
+    if (isAdded) {
+        println("Added Successfully")
+    } else {
+        println("Add Failed")
+    }
 }
+
+
 
 fun listRounds(){
     logger.info{"listRounds() function invoked"}
