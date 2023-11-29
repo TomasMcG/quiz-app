@@ -40,10 +40,14 @@ class RoundAPI (serializerType: Serializer){
             rounds[index]
         }
         else null
-
-
-
 }
+
+
+    fun updateRoundTitle(roundToEdit: Rounds){
+
+    }
+    fun updateRoundId(roundToEdit: Rounds){}
+    fun updateQuestionsAttempted(roundToEdit: Rounds){}
 
 
     @Throws(Exception::class)

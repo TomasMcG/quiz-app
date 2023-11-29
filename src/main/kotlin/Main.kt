@@ -192,14 +192,18 @@ fun updateRound() {
             val roundAttributeToUpdate = ScannerInput.readNextInt("Please choose which attribute you would like to update?")
                 do{
                     when(val option = roundAttributeMenu(roundToEdit)){
-                        1 -> roundAPI.updateRoundTitle()
-                        2 -> roundAPI.updateRoundId()
-                        3 -> roundAPI.updateQuestionsAttempted()
+                        1 -> roundAPI.updateRoundTitle(roundToEdit)
+                        2 -> roundAPI.updateRoundId(roundToEdit)
+                        3 -> roundAPI.updateQuestionsAttempted(roundToEdit)
                         4 -> updateQuestion()
+                        99 -> updateRound()
+                        0 -> mainMenu()
+
                        //Eventually put in update questions here
                     }}while(true)
 
-                }                }
+                }
+        }
 
         }
 
@@ -214,7 +218,7 @@ fun roundAttributeMenu(roundToEdit:Rounds ) = ScannerInput.readNextInt(
         3. Number of Attempts: ${roundToEdit.questionsAttempted}
         4. Questions: ${roundToEdit.questions}
         99. Choose a different Round to update
-        0. Exit
+        0. Exit to main menu
     """.trimIndent()
 )
 
