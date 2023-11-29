@@ -13,4 +13,14 @@ data class Rounds(
         return questions.add(question)
     }
 
+    fun numberOfQuestions() = questions.size
+
+    fun findOne(id: Int): Questions?{
+        return questions.find{ question -> question.questionId == id }
+    }
+
+    fun delete(id: Int): Boolean {
+        return questions.removeIf { question -> question.questionId == id}
+    }
+
 }
