@@ -1,3 +1,4 @@
+import controllers.RoundAPI
 import models.Questions
 import models.Rounds
 import mu.KotlinLogging
@@ -7,6 +8,7 @@ import java.lang.System.exit
 import java.time.LocalDate
 
 private val logger = KotlinLogging.logger {}
+private val roundAPI = RoundAPI()
 fun main(args: Array<String>) {
     runMenu()
 
@@ -158,10 +160,9 @@ fun deleteQuestion(){
 fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
-    val noteTitle = ScannerInput.readNextLine("Enter a title for the note: ")
-    val notePriority = ScannerInput.readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
-    val noteCategory = ScannerInput.readNextLine("Enter a category for the note: ")
-    val isAdded = noteAPI.add(Note(noteTitle = noteTitle, notePriority = notePriority, noteCategory = noteCategory))
+    val roundTitle = ScannerInput.readNextLine("Enter a category for the note: ")
+    var questionsAttempted = ScannerInput.readNextInt("Enter a category for the note: ")
+    val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle, questionsAttempted = questionsAttempted))
 
     if (isAdded) {
         println("Added Successfully")
