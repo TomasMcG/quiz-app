@@ -54,16 +54,17 @@ class RoundAPITest {
     inner class AddRounds{
         @Test
         fun addingRoundsToPopulatedAndEmpty() {
-            val newRound = Rounds(1, "newRound", 4)
+            val newRound = Rounds(5, "newRound", 4)
             assertEquals(4, populatedRounds!!.numberOfRounds())
             assertTrue(populatedRounds!!.add(newRound))
             assertEquals(5, populatedRounds!!.numberOfRounds())
-            assertEquals(newRound, populatedRounds!!.findRounds(populatedRounds!!.numberOfRounds() - 1))
+            //new rounds has latest id so it is the numberOfRounds. could also
+            assertEquals(newRound, populatedRounds!!.findRounds(5))
 
             assertEquals(0, emptyRounds!!.numberOfRounds())
             assertTrue(emptyRounds!!.add(newRound))
             assertEquals(1, emptyRounds!!.numberOfRounds())
-            assertEquals(newRound, emptyRounds!!.findRounds(emptyRounds!!.numberOfRounds() - 1))
+            assertEquals(newRound, emptyRounds!!.findRounds(emptyRounds!!.numberOfRounds() ))
 
         }
         }
@@ -147,9 +148,53 @@ inner class numberOfRounds{
 
 
     }
+    @Nested
+    inner class PersistenceTests {
+        @Test
+        fun `saving and loading an empty collection in XML doesn't crash app`()
+        {
+            //save empty Rounds.xml file
+            val storingRounds = RoundAPI(XMLSerializer(File("roundsTest.xml")))
+            storingRounds.store()
+
+            //loading empty Rounds.xml file into new object
+            val loadedRounds = RoundAPI(XMLSerializer(File("roundsTest.xml")))
+            loadedRounds.load()
+
+            //comaring source of Rounds storingRounds with the xml loaded Rounds loadedRounds
+
+            assertEquals(0,storingRounds.numberOfRounds())
+            assertEquals(0,loadedRounds.numberOfRounds())
+            assertEquals(storingRounds.numberOfRounds(),loadedRounds.numberOfRounds())
+
+        }
+
+        @Test
+        fun `saving and loading a loaded collection in XML doesn't lose data`()
+        {
+            // Storing 3 Rounds to the Rounds.XML file.
+            val storingRounds = RoundAPI(XMLSerializer(File("roundsTest.xml")))
+            storingRounds.add(geographyRound!!)
+            storingRounds.add(televisionRound!!)
+            storingRounds.add(videoGameRound!!)
+            storingRounds.store()
+
+            //Loading Rounds.xml into a different collection
+            val loadedRounds = RoundAPI(XMLSerializer(File("roundsTest.xml")))
+            loadedRounds.load()
+
+            //Comparing the source of the Rounds (storingRounds) with the XML loaded Rounds (loadedRounds)
+            assertEquals(3, storingRounds.numberOfRounds())
+            assertEquals(3, loadedRounds.numberOfRounds())
+            assertEquals(storingRounds.numberOfRounds(), loadedRounds.numberOfRounds())
+            assertEquals(storingRounds.findRounds(0), loadedRounds.findRounds(0))
+            assertEquals(storingRounds.findRounds(1), loadedRounds.findRounds(1))
+            assertEquals(storingRounds.findRounds(2), loadedRounds.findRounds(2))
+
+        }
 
 
 
-
+}
 }
 

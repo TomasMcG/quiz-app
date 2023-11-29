@@ -34,14 +34,9 @@ class RoundAPI (serializerType: Serializer){
         return Utilities.isValidListIndex(index, rounds)
     }
 
-    fun findRounds(index: Int): Rounds?{
-
-
-        return if(Utilities.isValidListIndex(index, rounds)){
-            rounds[index]
-        }
-        else null
-}
+    fun findRounds(roundId: Int): Rounds? {
+        return rounds.find { it.roundId == roundId }
+    }
 
 
     fun updateRoundTitle(roundToEdit: Rounds?,newTitle: String){
