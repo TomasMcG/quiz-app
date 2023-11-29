@@ -24,11 +24,11 @@ class RoundAPITest {
 
     @BeforeEach
     fun setup() {
-        geographyRound= Rounds( 1,"geographyRound")
+        geographyRound= Rounds( 1,"geographyRound",4)
        historyRound = Rounds(2 , "historyRound" )
         televisionRound = Rounds(3, "televisionRound")
         videoGameRound = Rounds(4, "videoGameRound" , 0)
-
+        println(geographyRound!!.roundId)
 
         //adding 5 round to the rounds api
         populatedRounds!!.add(geographyRound!!)
@@ -94,50 +94,59 @@ inner class numberOfRounds{
     @Test
     fun numberOfRoundsCorrect(){
         assertEquals(4, populatedRounds!!.numberOfRounds())
-        assertEquals(4, emptyRounds!!.numberOfRounds())
+        assertEquals(0, emptyRounds!!.numberOfRounds())
     }
 }
 
     @Nested
     inner class updateRounds{
-        @Test
-        fun `updating a round that does not exist returns false`(){
-            assertTrue(geographyRound!!.roundTitle!!.contains("geog"))
-            populatedRounds!!.updateRoundTitle(geographyRound,"newGeog" )
-            assertTrue(geographyRound!!.roundTitle!!.contains("newGeog"))
-            assertFalse(populatedRounds!!.updateRoundTitle(6,Rounds("Updating Round",2,"work",false, LocalDate.of(2023, 11, 4),LocalDate.of(2023, 11, 6),"Round Content","ToDo")))
 
-            assertFalse(populatedRounds!!.updateRoundId(-1,Rounds("Updating Round",2,"work",false,LocalDate.of(2023, 11, 4),LocalDate.of(2023, 11, 6),"Round Content","ToDo")))
-            assertFalse(emptyRounds!!.updateQuestionsAttempted(0,Rounds("Updating Round",2,"work",false,LocalDate.of(2023, 11, 4),LocalDate.of(2023, 11, 6),"Round Content","ToDo")))
-            assertFalse(emptyRounds!!.updateQuestionsAttempted(0,Rounds("Updating Round",2,"work",false,LocalDate.of(2023, 11, 4),LocalDate.of(2023, 11, 6),"Round Content","ToDo")))
-
-        }
 
 
 
         @Test
         fun `updating a round that exists returns true and updates`(){
-//check round 5 exists and check the contents
-            assertEquals(swim, populatedRounds!!.findRounds(4))
-            assertEquals("Swim - Pool",populatedRounds!!.findRounds(4)!!.roundTitle)
-            assertEquals(3, populatedRounds!!.findRounds(4)!!.roundId)
-            assertEquals("Hobby", populatedRounds!!.findRound(4)!!.question)
+
+            assertTrue(geographyRound!!.roundTitle.contains("geographyRound"))
+            populatedRounds!!.updateRoundTitle(geographyRound,"newGeog" )
+            assertTrue(geographyRound!!.roundTitle.contains("newGeog"))
+
+            //assertEquals(3,televisionRound!!.roundId )
+            populatedRounds!!.updateRoundId( geographyRound,6 )
+            assertEquals(6, geographyRound!!.roundId )
+
+            assertEquals(4,geographyRound!!.questionsAttempted )
+            populatedRounds!!.updateQuestionsAttempted( geographyRound,4)
+            assertTrue(geographyRound!!.roundTitle.contains("newGeog"))
 
 
 
 
-            //update Round 5 with new info and ensure contents updated successfully
-            assertTrue(populatedRounds!!.updateRounds(4,Rounds("Updating Round",2,"College",false,LocalDate.of(2023, 11, 4),LocalDate.of(2023, 11, 6),"Round Content","ToDo")))
-            assertEquals("Updating Round",populatedRounds!!.findRounds(4)!!.RoundTitle)
-            assertEquals(2, populatedRounds!!.findRounds(4)!!.RoundPriority)
-            assertEquals("College", populatedRounds!!.findRounds(4)!!.roundCategory)
-            assertEquals(LocalDate.of(2023, 11, 6), populatedRounds!!.findRounds(4)!!.lastModified)
         }
 
     }
 
 
+    @Nested
+    inner class DeleteRounds{
+        @Test
+        fun `deleting a Round that does not exist, return null`(){
+            assertNull(emptyRounds!!.deleteRound(0))
+            assertNull(populatedRounds!!.deleteRound(-1))
+            assertNull(populatedRounds!!.deleteRound(5))
+        }
 
+        @Test
+        fun `deleting a Round that exists and returns deleted object`(){
+            assertEquals(4,populatedRounds!!.numberOfRounds())
+            assertEquals(geographyRound, populatedRounds!!.deleteRound(1))
+            assertEquals(3,populatedRounds!!.numberOfRounds())
+            assertEquals(historyRound, populatedRounds!!.deleteRound(2))
+            assertEquals(2,populatedRounds!!.numberOfRounds())
+        }
+
+
+    }
 
 
 

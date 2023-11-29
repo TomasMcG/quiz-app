@@ -231,8 +231,8 @@ fun deleteRound(){
 
         println(roundAPI.listAllRounds())
         if (roundAPI.numberOfRounds() > 0) {
-            val indexToDelete = ScannerInput.readNextInt("Please select the index of the note to delete")
-            val roundToDelete = roundAPI.deleteRound(indexToDelete)
+            val idToDelete = ScannerInput.readNextInt("Please select the id of the round to delete")
+            val roundToDelete = roundAPI.deleteRound(idToDelete)
             if (roundToDelete != null) {
                 println("Delete Successful! Deleted round: ${roundToDelete.roundTitle}")
             } else {

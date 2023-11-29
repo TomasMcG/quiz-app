@@ -8,7 +8,7 @@ import utils.Utilities.formatListString
 class RoundAPI (serializerType: Serializer){
     private var serializer: Serializer = serializerType
     private var rounds = ArrayList<Rounds>()
-    private var lastId = 0
+    private var lastId = 1
     private fun getId() = lastId++
 
     fun add(roundToAdd: Rounds): Boolean {
@@ -22,10 +22,11 @@ class RoundAPI (serializerType: Serializer){
             formatListString(rounds)
     fun numberOfRounds(): Int { return rounds.size}
 
-    fun deleteRound(indexToDelete: Int): Rounds?{
-
-            return if (Utilities.isValidListIndex(indexToDelete, rounds)){
-                rounds.removeAt(indexToDelete)
+    fun deleteRound(idToDelete: Int): Rounds?{
+            val roundToDelete = rounds.find {it.roundId == idToDelete}
+            return if (roundToDelete != null){
+                rounds.remove(roundToDelete)
+                roundToDelete
             } else null
 
     }
