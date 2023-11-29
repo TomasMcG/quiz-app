@@ -2,13 +2,15 @@ import controllers.RoundAPI
 import models.Questions
 import models.Rounds
 import mu.KotlinLogging
+import persistence.XMLSerializer
 
 import utils.ScannerInput
+import java.io.File
 import java.lang.System.exit
 import java.time.LocalDate
 
 private val logger = KotlinLogging.logger {}
-private val roundAPI = RoundAPI()
+private val roundAPI = RoundAPI(XMLSerializer(File("rounds.xml")))
 fun main(args: Array<String>) {
     runMenu()
 
