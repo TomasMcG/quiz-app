@@ -22,5 +22,43 @@ class RoundAPITest {
     private var emptyRounds: RoundAPI? = RoundAPI(XMLSerializer(File("rounds.xml")))
 
 
+    @BeforeEach
+    fun setup() {
+        geographyRound= Rounds( 1,"geographyRound")
+       historyRound = Rounds(2 , "historyRound" )
+        televisionRound = Rounds(3, "televisionRound")
+        videoGameRound = Rounds(4, "videoGameRound" , 0)
+
+
+        //adding 5 Note to the notes api
+        populatedRounds!!.add(geographyRound!!)
+        populatedRounds!!.add(historyRound!!)
+        populatedRounds!!.add(televisionRound!!)
+        populatedRounds!!.add(videoGameRound!!)
+
+    }
+
+    @AfterEach
+    fun tearDown() {
+        learnKotlin = null
+        summerHoliday = null
+        codeApp = null
+        testApp = null
+        swim = null
+        populatedNotes = null
+        emptyNotes = null
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
