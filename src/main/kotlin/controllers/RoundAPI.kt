@@ -29,6 +29,10 @@ class RoundAPI (serializerType: Serializer){
             } else null
 
     }
+    fun isValidIndex(index: Int) : Boolean{
+        return Utilities.isValidListIndex(index, rounds)
+    }
+
 
     @Throws(Exception::class)
     fun load() {

@@ -177,9 +177,43 @@ fun addRound(){
 
 
 
-fun updateRound(){
-    logger.info{"updateRound() function invoked"}
+fun updateRound() {
+    logger.info { "updateRound() function invoked" }
+    println(roundAPI.listAllRounds())
+    if (roundAPI.numberOfRounds() > 0) {
+        val indexToUpdate =
+            ScannerInput.readNextInt("Please choose the id of the round that you would like to update")
+
+        if (roundAPI.isValidIndex(indexToUpdate)) {
+            val roundToEdit: Rounds = roundAPI.findRound(indexToUpdate)
+            if (roundToEdit != null) {
+                // Display the current note details so you can decided what you want to change
+
+            val roundAttributeToUpdate = ScannerInput.readNextInt("Please choose which attribute you would like to update?")
+                do{
+                    when(val option = roundAttributeMenu(roundToEdit)){
+
+                    }}while(true)
+
+                }                }
+
+        }
+
+    }
 }
+
+fun roundAttributeMenu(roundToEdit:Rounds ) = ScannerInput.readNextInt(
+    """
+        Please Choose the attribute you would like to update
+        1.Title: ${roundToEdit.roundTitle}
+        2. RoundId: ${roundToEdit.roundId}
+        3. Number of Attempts: ${roundToEdit.questionsAttempted}
+        4. Questions: ${roundToEdit.questions}
+        99. Choose a different Round to update
+        0. Exit
+    """.trimIndent()
+)
+
 
 fun deleteRound(){
     logger.info{"deleteRound() function invoked"}
