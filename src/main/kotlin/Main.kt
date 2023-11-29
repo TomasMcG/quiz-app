@@ -81,6 +81,18 @@ do this later*/
 
 fun addPlayer(){
     logger.info{"addPlayer() function invoked"}
+    var playerId = ScannerInput.readNextInt("Enter a title for the note: ")
+    var name = ScannerInput.readNextInt(Note(noteTitle,priority,category,false, LocalDate.now(),LocalDate.now(),noteContent,noteStatus))
+    //var rounds = ScannerInput.readNextInt List<Rounds>
+    var noAttempts = ScannerInput.readNextInt("enter number of attempts")
+    val isAdded = playerAPI.add(Player(playerId,name,rounds,noAttemps))
+
+    if (isAdded) {
+        println("Added Successfully")
+    } else {
+        println("Add Failed")
+    }
+
     //these info functions are lambdas
 }
 
