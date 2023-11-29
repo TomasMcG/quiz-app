@@ -59,7 +59,7 @@ fun runMenu(){
             7 -> updateQuestion()
             8 -> deleteQuestion()
             9 -> addRound()
-            10 -> println(roundAPI.listAlRounds())
+            10 -> println(roundAPI.listAllRounds())
             11 -> updateRound()
             12  -> deleteRound()
 
@@ -175,9 +175,7 @@ fun addRound(){
 
 
 
-fun listRounds(){
-    logger.info{"listRounds() function invoked"}
-}
+
 
 fun updateRound(){
     logger.info{"updateRound() function invoked"}
@@ -185,6 +183,19 @@ fun updateRound(){
 
 fun deleteRound(){
     logger.info{"deleteRound() function invoked"}
+
+        println(roundAPI.listAllRounds())
+        if (roundAPI.numberOfRounds() > 0) {
+            val indexToDelete = ScannerInput.readNextInt("Please select the index of the note to delete")
+            val roundToDelete = roundAPI.deleteRound(indexToDelete)
+            if (roundToDelete != null) {
+                println("Delete Successful! Deleted round: ${roundToDelete.roundTitle}")
+            } else {
+                println("Delete NOT successful")
+            }
+        }
+
+
 }
 
 

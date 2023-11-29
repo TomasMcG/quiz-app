@@ -4,8 +4,8 @@ import models.Rounds
 import persistence.Serializer
 import utils.Utilities.formatListString
 
-class RoundAPI (serializer: Serializer){
-    private var serializer: Serializer = serializer
+class RoundAPI (serializerType: Serializer){
+    private var serializer: Serializer = serializerType
     private var rounds = ArrayList<Rounds>()
     private var lastId = 0
     private fun getId() = lastId++
@@ -14,11 +14,12 @@ class RoundAPI (serializer: Serializer){
         roundToAdd.roundId = getId()
         return rounds.add(roundToAdd)
     }
-    fun listAlRounds(): String =
+    fun listAllRounds(): String =
         if (rounds.isEmpty())   //can remove curly braces for single line of code for if
             "No rounds stored"
         else
             formatListString(rounds)
+    fun numberOfRounds(): Int { return rounds.size}
 
 
     @Throws(Exception::class)
