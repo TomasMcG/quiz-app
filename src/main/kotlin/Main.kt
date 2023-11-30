@@ -34,10 +34,7 @@ fun mainMenu() : Int {
          > |   8) Delete a Question             
          > ----------------------------------
          > | Round MENU                      
-         > |   9) Add a Round                
-         > |   10) List all Rounds            
-         > |   11) Update a Round             
-         > |   12) Delete a Round             
+         > |   9) Edit Round values menu         
          > ----------------------------------         
          > |   0) Exit                      
          > ----------------------------------
@@ -58,10 +55,7 @@ fun runMenu(){
             6 -> listQuestions()
             7 -> updateQuestion()
             8 -> deleteQuestion()
-            9 -> addRound()
-            10 -> println(roundAPI.listAllRounds())
-            11 -> updateRound()
-            12  -> deleteRound()
+            9 -> runRoundMenu()
 
             0 -> exitApp()
             else -> println("Invalid option entered: ${option}")
@@ -69,6 +63,43 @@ fun runMenu(){
     }while(true)
 
 }
+
+fun runRoundMenu(){
+    do{
+        val option = roundMenu()
+        when(option){
+            1 -> addRound()
+            2 -> println(roundAPI.listAllRounds())
+            3 -> updateRound()
+            4  -> deleteRound()
+
+            0 -> exitApp()
+            -1 -> mainMenu()
+            else -> println("Invalid option entered: ${option}")
+        }
+    }while(true)
+
+}
+
+fun roundMenu()
+    : Int {
+        return ScannerInput.readNextInt(""" 
+         > ----------------------------------
+         > |         Round CRUD Menu         
+         > ----------------------------------              
+         > |   1) Add a Round                
+         > |   2) List all Rounds            
+         > |   3) Update a Round             
+         > |   4) Delete a Round             
+         > ----------------------------------         
+         > |   0) Exit   
+         >    -1)Back to Main Menu               
+         > ----------------------------------
+         > ==>> """.trimMargin(">"))
+
+    }
+
+
 /*
 fun managePlayer(){
     do{
