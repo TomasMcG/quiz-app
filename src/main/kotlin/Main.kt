@@ -72,6 +72,8 @@ fun runRoundMenu(){
             2 -> println(roundAPI.listAllRounds())
             3 -> updateRound()
             4  -> deleteRound()
+            5 -> saveRound()
+            6 -> loadRound()
 
             0 -> exitApp()
             -1 -> mainMenu()
@@ -90,7 +92,10 @@ fun roundMenu()
          > |   1) Add a Round                
          > |   2) List all Rounds            
          > |   3) Update a Round             
-         > |   4) Delete a Round             
+         > |   4) Delete a Round      
+         > |   5) Save Rounds
+         > |   6) Load Rounds
+         >      
          > ----------------------------------         
          > |   0) Exit   
          >    -1)Back to Main Menu               
@@ -273,6 +278,25 @@ fun deleteRound(){
         }
 
 
+}
+
+fun saveRound(){
+    try {
+        roundAPI.store()
+        println("Rounds saved Successfuly")
+    }catch(e: Exception){"Error writing fo file: $e"
+    }
+}
+/**
+ * Loads the notes data from the storage medium. It is used to retrieve previously saved notes.
+ */
+fun loadRound() {
+    try {
+        roundAPI.load()
+        println("Rounds loaded successfully")
+    }catch (e: Exception) {
+        System.err.println("Error reading from file: $e")
+    }
 }
 
 
