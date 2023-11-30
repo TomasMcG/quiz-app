@@ -200,9 +200,9 @@ fun updateRound() {
                             roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
                         4 -> updateQuestion()
                         99 -> updateRound()
-                        0 -> mainMenu()
+                        0 -> println("exiting")
 
-                         // Add this line to clear the input buffer
+
                         //Eventually put in update questions here
                     }}while(option!= 4 && option != 99 && option != 0)
 
