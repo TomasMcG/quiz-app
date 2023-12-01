@@ -16,6 +16,7 @@ By Tomás McGrath
   -   Rounds
   -   Questions
 - There will be an Admin Section where you can perform CRUD on all of the objects.
-- You will be able to add , delete and update objects using a menu. 
+- You will be able to add , delete and update objects using a menu.
+- Currently there is CRUD functionality for Rounds objects, you are also able to save and load them to XML.
 
 
