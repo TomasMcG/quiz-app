@@ -186,7 +186,7 @@ fun deleteQuestion(){
         if (round != null) {
             val question: Questions? = askUserToChooseQuestion(round)
             if (question != null) {
-                val isDeleted = round.delete(question.questionId)
+                val isDeleted = round.deleteQuestions(question.questionId)
                 if (isDeleted) {
                     println("Delete Successful!")
                 } else {

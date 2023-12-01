@@ -28,7 +28,7 @@ data class Rounds(
     }
 
     fun deleteQuestions(id: Int): Boolean {
-        return questions.removeIf { question -> question?.questionId == id }
+        return questions.removeIf{ question -> question?.questionId == id }
     }
 
     fun listAllQuestions(): String =
