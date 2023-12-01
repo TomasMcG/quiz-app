@@ -167,11 +167,10 @@ fun deletePlayer(){
 }*/
 
 
-/*private fun askUserToChooseRound(): Rounds? {
-    listRounds()
-return Rounds(1,2,)}
-    if (roundAPI.numberOfrounds() > 0) {
-        val round = roundAPI.findRound(ScannerInput.readNextInt("\nEnter the id of the round: "))
+private fun askUserToChooseRound(): Rounds? {
+    roundAPI.listAllRounds()
+    if ( roundAPI.numberOfRounds() > 0) {
+        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to add the Question to: "))
         if (round != null) {
             return round
         } else {
@@ -179,7 +178,7 @@ return Rounds(1,2,)}
         }
     }
     return null //selected note is not active
-}*/
+}
 
 
 
