@@ -210,6 +210,14 @@ private fun askUserToChooseQuestion(round: Rounds): Questions? {
 
 fun listQuestions(){
     logger.info{"listQuestions() function invoked"}
+    val round: Rounds? = askUserToChooseRound()
+    if (round != null) {
+        val question: Questions? = askUserToChooseQuestion(round)
+        if (question != null) {
+            round.listAllQuestions()
+
+        }
+    }
 }
 
 fun updateQuestion(){
