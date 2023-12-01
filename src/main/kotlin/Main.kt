@@ -7,7 +7,6 @@ import persistence.XMLSerializer
 import utils.ScannerInput
 import java.io.File
 import java.lang.System.exit
-import java.time.LocalDate
 
 private val logger = KotlinLogging.logger {}
 private val roundAPI = RoundAPI(XMLSerializer(File("rounds.xml")))

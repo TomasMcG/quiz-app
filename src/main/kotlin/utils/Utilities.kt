@@ -51,7 +51,7 @@ object Utilities {
 
 
     @JvmStatic
-    fun emptyArrayList(): ArrayList<Questions> {
+    fun emptyArrayList(): ArrayList<Questions?> {
         return ArrayList()
     }
 

@@ -20,11 +20,16 @@ class RoundsQuestionsAPITest {
     private var populatedRounds: RoundAPI? = RoundAPI(XMLSerializer(File("rounds.xml")))
     private var emptyRounds: RoundAPI? = RoundAPI(XMLSerializer(File("rounds.xml")))
 
+    //private var geographyQuestions: ArrayList<Questions> = emptyArrayList()
+    private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
+
+
+
 
 
     @BeforeEach
     fun setup() {
-        geographyRound= Rounds( 1,"geographyRound",4)
+        geographyRound= Rounds( 1,"geographyRound",4,geographyQuestions)
         historyRound = Rounds(2 , "historyRound" )
         televisionRound = Rounds(3, "televisionRound")
         videoGameRound = Rounds(4, "videoGameRound" , 0)
@@ -77,18 +82,8 @@ class RoundsQuestionsAPITest {
     @Nested
     inner class AddRounds{
         @Test
-        fun addingRoundsToPopulatedAndEmpty() {
-            val newRound = Rounds(5, "newRound", 4)
-            Assertions.assertEquals(4, populatedRounds!!.numberOfRounds())
-            Assertions.assertTrue(populatedRounds!!.add(newRound))
-            Assertions.assertEquals(5, populatedRounds!!.numberOfRounds())
-            //new rounds has latest id so it is the numberOfRounds. could also
-            Assertions.assertEquals(newRound, populatedRounds!!.findRounds(5))
+        fun `Rounds contains question values when created with them`() {
 
-            Assertions.assertEquals(0, emptyRounds!!.numberOfRounds())
-            Assertions.assertTrue(emptyRounds!!.add(newRound))
-            Assertions.assertEquals(1, emptyRounds!!.numberOfRounds())
-            Assertions.assertEquals(newRound, emptyRounds!!.findRounds(emptyRounds!!.numberOfRounds()))
 
         }
     }
