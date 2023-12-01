@@ -1,5 +1,7 @@
 package utils
 
+import models.Questions
+
 
 /**
  * A utility object that provides various utility functions for common tasks.
@@ -40,11 +42,17 @@ object Utilities {
     @JvmStatic
     fun formatListString(notesToFormat: List<Any>): String =
         notesToFormat
-            .joinToString(separator = "\n") { any ->  "$any" }
+            .joinToString(separator = "\n") { any -> "$any" }
 
     @JvmStatic
     fun formatSetString(itemsToFormat: ArrayList<Any>): String =
         itemsToFormat
-            .joinToString(separator = "\n") { any ->  "\t$any" }
+            .joinToString(separator = "\n") { any -> "\t$any" }
+
+
+    @JvmStatic
+    fun emptyArrayList(): ArrayList<Questions> {
+        return ArrayList()
+    }
 
 }

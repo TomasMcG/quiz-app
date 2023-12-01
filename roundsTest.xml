@@ -1,0 +1,25 @@
+<object-stream>
+  <list>
+    <models.Rounds>
+      <roundId>1</roundId>
+      <roundTitle>geographyRound</roundTitle>
+      <questionsAttempted>4</questionsAttempted>
+      <questions/>
+      <lastQuestionId>0</lastQuestionId>
+    </models.Rounds>
+    <models.Rounds>
+      <roundId>2</roundId>
+      <roundTitle>televisionRound</roundTitle>
+      <questionsAttempted>0</questionsAttempted>
+      <questions/>
+      <lastQuestionId>0</lastQuestionId>
+    </models.Rounds>
+    <models.Rounds>
+      <roundId>3</roundId>
+      <roundTitle>videoGameRound</roundTitle>
+      <questionsAttempted>0</questionsAttempted>
+      <questions/>
+      <lastQuestionId>0</lastQuestionId>
+    </models.Rounds>
+  </list>
+</object-stream>

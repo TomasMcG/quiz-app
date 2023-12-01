@@ -1,0 +1,11 @@
+<object-stream>
+  <list>
+    <models.Rounds>
+      <roundId>1</roundId>
+      <roundTitle>new</roundTitle>
+      <questionsAttempted>5</questionsAttempted>
+      <questions/>
+      <lastQuestionId>0</lastQuestionId>
+    </models.Rounds>
+  </list>
+</object-stream>

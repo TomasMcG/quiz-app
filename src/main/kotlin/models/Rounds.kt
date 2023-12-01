@@ -1,11 +1,14 @@
 package models
 
-import utils.Utilities
+
+import utils.Utilities.emptyArrayList
 import utils.Utilities.formatListString
 
 data class Rounds(
-    var roundId: Int, var questionsAttempted: Int ,
-    var questions: ArrayList<Questions>
+    var roundId: Int = 0,
+    var roundTitle: String,
+    var questionsAttempted: Int = 0,
+    var questions: ArrayList<Questions> =emptyArrayList()
 ) {
 
     private var lastQuestionId = 0
