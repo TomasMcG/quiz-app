@@ -12,7 +12,7 @@ data class Rounds(
 ) {
 //----------------------------------------------api function for questions objects below.
     //incrementer for question id
-    private var lastQuestionId = 0
+    private var lastQuestionId = 1
     private fun getQuestionId() = lastQuestionId++
 
     fun addQuestion(question: Questions): Boolean {

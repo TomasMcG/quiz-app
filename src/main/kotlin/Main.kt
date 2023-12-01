@@ -51,7 +51,7 @@ fun runMenu(){
             2 -> listPlayers()
             3 -> updatePlayer()
             4 -> deletePlayer()
-            //5 -> addQuestionToRound()
+            5 -> addQuestionToRound()
             6 -> listQuestions()
             7 -> updateQuestion()
             8 -> deleteQuestion()

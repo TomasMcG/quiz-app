@@ -28,7 +28,7 @@ class RoundAPITest {
        historyRound = Rounds(2 , "historyRound" )
         televisionRound = Rounds(3, "televisionRound")
         videoGameRound = Rounds(4, "videoGameRound" , 0)
-        println(geographyRound!!.roundId)
+
 
         //adding 5 round to the rounds api
         populatedRounds!!.add(geographyRound!!)
