@@ -10,7 +10,7 @@ data class Rounds(
     var questionsAttempted: Int = 0,
     var questions: ArrayList<Questions?> =emptyArrayList()
 ) {
-//----------------------------------------------api function for questions objects below.
+    //----------------------------------------------api function for questions objects below.
     //incrementer for question id
     private var lastQuestionId = 1
     private fun getQuestionId() = lastQuestionId++
@@ -19,13 +19,6 @@ data class Rounds(
         question.questionId = getQuestionId()
         return questions.add(question)
     }
-
-
-
-
-
-
-
 
 
     fun numberOfQuestions() = questions.size
@@ -38,12 +31,12 @@ data class Rounds(
         return questions.removeIf { question -> question?.questionId == id }
     }
 
-    /*fun listAllQuestions(): String =
+    fun listAllQuestions(): String =
         if (questions.isEmpty())   //can remove curly braces for single line of code for if
-            "No notes stored"
+            "No questions stored"
         else
-            formatListString(questions)
-*/
+            formatListString(questions as ArrayList<Any>)
+//cast it as any so it can use the utility.
 
 
     fun updateQuestions(id: Int, newQuestions: Questions): Boolean {

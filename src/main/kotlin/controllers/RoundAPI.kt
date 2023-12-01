@@ -3,8 +3,8 @@ package controllers
 import models.Questions
 import models.Rounds
 import persistence.Serializer
-import utils.Utilities
 import utils.Utilities.formatListString
+import utils.Utilities.formatSetString
 
 class RoundAPI (serializerType: Serializer){
     private var serializer: Serializer = serializerType
@@ -24,7 +24,7 @@ class RoundAPI (serializerType: Serializer){
         if (rounds.isEmpty())   //can remove curly braces for single line of code for if
             "No rounds stored"
         else
-            formatListString(rounds)
+            formatListString(rounds as ArrayList<Any>)
     fun numberOfRounds(): Int { return rounds.size}
 
     fun deleteRound(idToDelete: Int): Rounds?{

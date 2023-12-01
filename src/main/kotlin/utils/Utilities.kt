@@ -40,9 +40,10 @@ object Utilities {
      */
 
     @JvmStatic
-    fun formatListString(notesToFormat: List<Any>): String =
-        notesToFormat
+    fun formatListString(objectsToFormat: ArrayList<Any>): String =
+        objectsToFormat
             .joinToString(separator = "\n") { any -> "$any" }
+//I need 2 seperate list strings for rounds and questions, ArrayLIst<Any> wasn'tworking for me
 
     @JvmStatic
     fun formatSetString(itemsToFormat: ArrayList<Any>): String =

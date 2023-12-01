@@ -194,10 +194,18 @@ fun deleteQuestion(){
                 }
             }
         }
-
-
 }
 
+private fun askUserToChooseQuestion(round: Rounds): Questions? {
+    if (round.numberOfQuestions() > 0) {
+        print(round.listAllQuestions())
+        return round.findQuestion(ScannerInput.readNextInt("\nEnter the id of the item: "))
+    }
+    else{
+        println ("No items for chosen note")
+        return null
+    }
+}
 
 
 fun listQuestions(){
