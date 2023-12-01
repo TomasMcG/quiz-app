@@ -1,5 +1,6 @@
 package controllers
 
+import models.Questions
 import models.Rounds
 import persistence.Serializer
 import utils.Utilities
@@ -14,6 +15,10 @@ class RoundAPI (serializerType: Serializer){
     fun add(roundToAdd: Rounds): Boolean {
         roundToAdd.roundId = getId()
         return rounds.add(roundToAdd)
+    }
+
+    fun addQuestionToRound(rounds: Rounds, question: Questions){
+        rounds.addQuestion(question)
     }
     fun listAllRounds(): String =
         if (rounds.isEmpty())   //can remove curly braces for single line of code for if

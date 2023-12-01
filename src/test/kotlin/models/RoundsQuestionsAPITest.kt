@@ -3,6 +3,7 @@ import controllers.RoundAPI
 import org.junit.jupiter.api.*
 import persistence.XMLSerializer
 import java.io.File
+import kotlin.test.assertEquals
 
 class RoundsQuestionsAPITest {
 
@@ -82,8 +83,16 @@ class RoundsQuestionsAPITest {
     @Nested
     inner class AddRounds{
         @Test
-        fun `Rounds contains question values when created with them`() {
-
+        fun `Add questions to a round`() {
+            assertEquals(4,geographyRound?.numberOfQuestions())
+           var newQuestion: Questions =Questions(5,
+                """New Question):
+            |1.AnswerOne
+            |2.AnswerTwo
+            |3.AnswerThree
+        """.trimMargin(),"5 million")
+            geographyRound?.addQuestion(newQuestion)
+            assertEquals(5,geographyRound?.numberOfQuestions())
 
         }
     }
