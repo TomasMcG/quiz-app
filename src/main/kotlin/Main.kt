@@ -152,19 +152,19 @@ fun deletePlayer(){
 }
 
 //-------------------------------------------------------------------
-/*private fun addQuestionToRound() {
+private fun addQuestionToRound() {
     val round: Rounds? = askUserToChooseRound()
     if (round != null) {
         if (round.addQuestion(Questions(1,
-                questionText = ScannerInput.readNextLine("\t Possible Questions: "),
-                correctAnswer = ScannerInput.readNextLine("\t Possible Answers: ")
+                questionText = ScannerInput.readNextLine("\t Question and possible answers: "),
+                correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
 
             )))
 
             println("Add Successful!")
         else println("Add NOT Successful")
     }
-}*/
+}
 
 
 private fun askUserToChooseRound(): Rounds? {
