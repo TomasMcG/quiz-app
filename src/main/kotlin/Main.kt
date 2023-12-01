@@ -179,6 +179,25 @@ private fun askUserToChooseRound(): Rounds? {
     return null //selected note is not active
 }
 
+fun deleteQuestion(){
+    logger.info{"deleteQuestion() function invoked"}
+
+        val round: Rounds? = askUserToChooseRound()
+        if (round != null) {
+            val question: Questions? = askUserToChooseQuestion(round)
+            if (question != null) {
+                val isDeleted = round.delete(question.questionId)
+                if (isDeleted) {
+                    println("Delete Successful!")
+                } else {
+                    println("Delete NOT Successful")
+                }
+            }
+        }
+
+
+}
+
 
 
 fun listQuestions(){
@@ -189,9 +208,7 @@ fun updateQuestion(){
     logger.info{"updateQuestion() function invoked"}
 }
 
-fun deleteQuestion(){
-    logger.info{"deleteQuestion() function invoked"}
-}
+
 //------------------------------------------------------------------------------------
 fun addRound(){
     logger.info{"addRound() function invoked"}

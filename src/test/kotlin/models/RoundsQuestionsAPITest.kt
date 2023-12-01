@@ -93,7 +93,11 @@ class RoundsQuestionsAPITest {
         """.trimMargin(),"5 million")
             geographyRound?.addQuestion(newQuestion)
             assertEquals(5,geographyRound?.numberOfQuestions())
+            assertEquals(5,geographyRound?.questions?.size)
 
         }
     }
+
+
+
 }
