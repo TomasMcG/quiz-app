@@ -10,7 +10,8 @@ data class Rounds(
     var questionsAttempted: Int = 0,
     var questions: ArrayList<Questions> =emptyArrayList()
 ) {
-
+//----------------------------------------------api function for questions objects below.
+    //incrementer for question id
     private var lastQuestionId = 0
     private fun getQuestionId() = lastQuestionId++
 
