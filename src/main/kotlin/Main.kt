@@ -170,7 +170,7 @@ private fun addQuestionToRound() {
 private fun askUserToChooseRound(): Rounds? {
     println(roundAPI.listAllRounds())
     if ( roundAPI.numberOfRounds() > 0) {
-        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to whose questions you want to see: "))
+        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to whose questions you want to deal with: "))
         if (round != null) {
             return round
         } else {
@@ -200,10 +200,10 @@ fun deleteQuestion(){
 private fun askUserToChooseQuestion(round: Rounds): Questions? {
     if (round.numberOfQuestions() > 0) {
         print(round.listAllQuestions())
-        return round.findQuestion(ScannerInput.readNextInt("\nEnter the id of the item: "))
+        return round.findQuestion(ScannerInput.readNextInt("\nEnter the id of the Question to deal with: "))
     }
     else{
-        println ("No items for chosen note")
+        println ("No questions for chosen Round")
         return null
     }
 }
@@ -223,7 +223,37 @@ fun listQuestions(){
 
 fun updateQuestion(){
     logger.info{"updateQuestion() function invoked"}
+    val round: Rounds? = askUserToChooseRound()
+    if (round != null) {
+        val questionToEdit: Questions? = askUserToChooseQuestion(round)
+        if (questionToEdit != null) {
+          //what questio ndo you want to edit
+
+            var option: Int
+            do{option = questionAttributeMenu(questionToEdit)
+                when(option){
+                    1 -> {var newQuestionText: String = ScannerInput.readNextLine("Please enter the new question text")
+                        roundAPI.updateQuestionText(questionToEdit,newQuestionText)}
+                    2 ->{ var newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
+                        roundAPI.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
+                    99 -> updateQuestion()
+                    0 -> println("exiting")
+                    //Eventually put in update questions here
+                }}while(option != 99 && option != 0)
+
+        }
+
+            /*if (round.update(question.questionId, Questions(questionText = newContents))) {
+                println("Question contents updated")
+            } else {
+                println("Question contents NOT updated")
+            }
+        } else {
+            println("Invalid Question Id")
+        }
+    }*/
 }
+    }
 
 
 //------------------------------------------------------------------------------------
@@ -247,13 +277,11 @@ fun addRound(){
 
 fun updateRound() {
     logger.info { "updateRound() function invoked" }
-    println(roundAPI.listAllRounds())
+    /*println(roundAPI.listAllRounds())
     if (roundAPI.numberOfRounds() > 0) {
         val indexToUpdate =
             ScannerInput.readNextInt("Please choose the id of the round that you would like to update")
-
-        if (roundAPI.isValidIndex(indexToUpdate)) {
-            var roundToEdit: Rounds? = roundAPI.findRounds(indexToUpdate)
+*/ val roundToEdit = askUserToChooseRound()
             if (roundToEdit != null) {
                 // Display the current note details so you can decided what you want to change
 
@@ -264,7 +292,7 @@ fun updateRound() {
                             roundAPI.updateRoundTitle(roundToEdit,newTitle)}
                         2 ->{ var newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
                             roundAPI.updateRoundId(roundToEdit,newRoundId)}
-                        3 -> { var newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new round id")
+                        3 -> { var newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
                             roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
                         4 -> updateQuestion()
                         99 -> updateRound()
@@ -275,11 +303,11 @@ fun updateRound() {
                     }}while(option!= 4 && option != 99 && option != 0)
 
                 }
-        }
+
 
         }
 
-    }
+
 
 
 fun roundAttributeMenu(roundToEdit:Rounds ):Int = ScannerInput.readNextInt(
