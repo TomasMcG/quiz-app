@@ -90,10 +90,8 @@ class RoundsQuestionsAPITest {
         geographyQuestion3 = null
         geographyQuestion4 = null
 
-
-
-
     }
+
     @Nested
     inner class AddRounds{
         @Test
@@ -110,12 +108,11 @@ class RoundsQuestionsAPITest {
 
           //  logger.info{geographyRound?.questions}
             assertEquals(5,geographyRound?.questions?.size)
-
         }
     }
+
     @Nested
     inner class ListQuestions {
-
         @Test
         fun `listAllQuestions returns No Questions Stored message when ArrayList is empty`() {
             Assertions.assertEquals( 0,emptyQuestionsRound!!.numberOfQuestions())
@@ -131,13 +128,8 @@ class RoundsQuestionsAPITest {
                 Assertions.assertTrue(roundsString.contains("cork"))
                 Assertions.assertTrue(roundsString.contains("sligo"))
             }
-
-
-
         }
     }
-
-
 
     @Nested
     inner class DeleteQuestions{
@@ -153,12 +145,28 @@ class RoundsQuestionsAPITest {
             Assertions.assertEquals(4, geographyRound!!.numberOfQuestions())
             Assertions.assertEquals(true,geographyRound!!.deleteQuestions(1))
             Assertions.assertEquals(3, geographyRound!!.numberOfQuestions())
-
         }
-
-
     }
 
+    @Nested
+    inner class updateQuestions{
+        @Test
+        fun `updating a question that exists returns true and updates`(){
+            //update question text
+            Assertions.assertTrue(geographyRound!!.questions.contains(geographyQuestion1))
+            Assertions.assertTrue(geographyQuestion1!!.questionText.contains("Which of the following counties is coastal"))
+            geographyRound!!.updateQuestionText(geographyQuestion1,"updated text" )
+            Assertions.assertTrue(geographyQuestion1!!.questionText.contains("updated text"))
 
+            //update question id
+            Assertions.assertTrue(geographyQuestion1!!.questionId == 1)
+            geographyRound!!.updateQuestionId(geographyQuestion1,10 )
+            Assertions.assertTrue(geographyQuestion1!!.questionId == 10)
 
+            //update question correct answer
+            Assertions.assertTrue(geographyQuestion1!!.correctAnswer.contains("Waterford"))
+            geographyRound!!.updateQuestionCorrectAnswer(geographyQuestion1,"updated answer" )
+            Assertions.assertTrue(geographyQuestion1!!.correctAnswer.contains("updated answer"))
+        }
+    }
 }
