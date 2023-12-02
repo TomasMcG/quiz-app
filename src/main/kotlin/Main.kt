@@ -328,6 +328,19 @@ val chosenRound = askUserToChooseRound()
         You have chosen the ${chosenRound?.roundTitle} Round
     """.trimIndent())
     var numberOfCorrectAnswers = 0
+    var numberOfQuestions = chosenRound?.numberOfQuestions()
+    //first display question 1,
+    var index: Int = 0
+    if( index < numberOfQuestions!!){
+    println(chosenRound?.questions!![index])
+        var userAnswer:String = ScannerInput.readNextLine("Please Enter the Correct Answer")
+        if(userAnswer == chosenRound?.questions!![index]!!.correctAnswer){
+            numberOfCorrectAnswers++
+        }
+    index++
+    }
+    println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
+    println("Goodbye")
 
 }
 
