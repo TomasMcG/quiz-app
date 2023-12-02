@@ -233,9 +233,9 @@ fun updateQuestion(){
             do{option = questionAttributeMenu(questionToEdit)
                 when(option){
                     1 -> {var newQuestionText: String = ScannerInput.readNextLine("Please enter the new question text")
-                        roundAPI.updateQuestionText(questionToEdit,newQuestionText)}
+                        round.updateQuestionText(questionToEdit,newQuestionText)}
                     2 ->{ var newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
-                        roundAPI.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
+                        round.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
                     3 ->{ var newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
                         round.updateQuestionId(questionToEdit,newQuestionId)}
                     99 -> updateQuestion()

@@ -41,36 +41,15 @@ data class Rounds(
 //cast it as any so it can use the utility.
 
 
-    /*fun updateQuestions(id: Int, newQuestions: Questions): Boolean {
-        val foundQuestions = findQuestion(id)  //if the object exists, use the details passed in the newItem parameter to
-        //update the found object in the Set
-        if (foundQuestions != null) {
-            foundQuestions.questionId = newQuestions.questionId
-            foundQuestions.questionText = newQuestions.questionText
-            foundQuestions.correctAnswer = newQuestions.correctAnswer
-            return true
-        }
 
-        //if the object was not found, return false, indicating that the update was not successful
-        return false
-    }*/
 
     fun updateQuestionId(questionToEdit: Questions?,newQuestionId: Int){questionToEdit?.questionId = newQuestionId}
+    fun updateQuestionText(questionToEdit: Questions?,newQuestionText: String){questionToEdit?.questionText = newQuestionText}
+    fun updateQuestionCorrectAnswer(questionToEdit: Questions?,newQuestionCorrectAnswer: String){questionToEdit?.correctAnswer = newQuestionCorrectAnswer}
 
 
 
-/*
-    @Throws(Exception::class)
-    fun load() {
-        questions = serializer.read() as ArrayList<Questions?>
-    }
 
-    @Throws(Exception::class)
-    fun store() {
-        serializer.write(questions)
-    }
-
-    */
 
 
 }
