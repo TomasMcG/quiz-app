@@ -45,43 +45,8 @@ fun runMenu(){
 
 }
 
-fun tryQuiz(){println("Not added yet")}
-
-fun playerMenu(): Int {
-    return ScannerInput.readNextInt(""" 
-         > ----------------------------------
-         > |Player Menu(not functional yet)       
-         > ----------------------------------  
-         > |   1) Add a Player
-         > |   2) List all Players
-         > |   3) Update a Player
-         > |   4) Delete a Player
-         > ----------------------------------         
-         > |   0) Exit   
-         >    -1)Back to Main Menu               
-         > ----------------------------------
-         > ==>> """.trimMargin(">"))
-
-}
 
 
-
-fun runPlayerMenu(){
-    do{
-        val option = playerMenu()
-        when(option){
-            1 -> addPlayer()
-            2 -> listPlayers()
-            3 -> updatePlayer()
-            4 -> deletePlayer()
-
-            0 -> exitApp()
-            -1 -> println("Going back to main menu")
-            else -> println("Invalid option entered: ${option}")
-        }
-    }while(option != 0 && option != -1)
-
-}
 
 fun runRoundMenu(){
     do{
@@ -136,53 +101,9 @@ fun roundMenu()
     }
 
 
-/*
-fun managePlayer(){
-    do{
-        val option = mainMenu()
-        when(option){
-            1 -> addPlayer()
-            2 -> listPlayers()
-            3 -> updatePlayer()
-            4 -> deletePlayer()
-            0 -> exitApp()
-            else -> println("Invalid option entered: ${option}")
-        }
-    }while(true)
-
-}
-do this later*/
-
-fun addPlayer(){
-    logger.info{"addPlayer() function invoked"}
-   /* var playerId = ScannerInput.readNextInt("Enter a title for the note: ")
-    var name = ScannerInput.readNextInt(Note(noteTitle,priority,category,false, LocalDate.now(),LocalDate.now(),noteContent,noteStatus))
-    //var rounds = ScannerInput.readNextInt List<Rounds>
-    var noAttempts = ScannerInput.readNextInt("enter number of attempts")
-    val isAdded = playerAPI.add(Player(playerId,name,rounds,noAttemps))
-
-    if (isAdded) {
-        println("Added Successfully")
-    } else {
-        println("Add Failed")
-    }*/
-
-    //add api and controllers back in.
-}
-
-
-fun listPlayers(){
-    logger.info{"listPlayers() function invoked"}
-}
-
-fun updatePlayer(){
-    logger.info{"updatePlayer() function invoked"}}
-
-fun deletePlayer(){
-    logger.info{"deletePlayer() function invoked"}
-}
 
 //-------------------------------------------------------------------
+//Questions functions
 private fun addQuestionToRound() {
     val round: Rounds? = askUserToChooseRound()
     if (round != null) {
@@ -291,6 +212,7 @@ fun questionAttributeMenu(questionToEdit:Questions ):Int = ScannerInput.readNext
 )
 
 //------------------------------------------------------------------------------------
+//Round functions
 fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
@@ -392,6 +314,90 @@ fun loadRound() {
         System.err.println("Error reading from file: $e")
     }
 }
+//---------------------------------------------------------
+//Quiz Interface Section
+fun tryQuiz(){
+
+    println("""
+    Welcome to the quiz
+    Our quiz has multiple rounds based on different things such as History or Geography
+    To get started on the quiz please choose a round to try out
+""".trimIndent())
+val chosenRound = askUserToChooseRound()
+    println("""
+        You have chosen the ${chosenRound?.roundTitle} Round
+    """.trimIndent())
+    var numberOfCorrectAnswers = 0
+
+}
+
+//--------------------------------------------------------
+//PLAYER Section
+fun playerMenu(): Int {
+    return ScannerInput.readNextInt(""" 
+         > ----------------------------------
+         > |Player Menu(not functional yet)       
+         > ----------------------------------  
+         > |   1) Add a Player
+         > |   2) List all Players
+         > |   3) Update a Player
+         > |   4) Delete a Player
+         > ----------------------------------         
+         > |   0) Exit   
+         >    -1)Back to Main Menu               
+         > ----------------------------------
+         > ==>> """.trimMargin(">"))
+
+}
+
+
+
+fun runPlayerMenu(){
+    do{
+        val option = playerMenu()
+        when(option){
+            1 -> addPlayer()
+            2 -> listPlayers()
+            3 -> updatePlayer()
+            4 -> deletePlayer()
+
+            0 -> exitApp()
+            -1 -> println("Going back to main menu")
+            else -> println("Invalid option entered: ${option}")
+        }
+    }while(option != 0 && option != -1)
+
+}
+
+fun addPlayer(){
+    logger.info{"addPlayer() function invoked"}
+    /* var playerId = ScannerInput.readNextInt("Enter a title for the note: ")
+     var name = ScannerInput.readNextInt(Note(noteTitle,priority,category,false, LocalDate.now(),LocalDate.now(),noteContent,noteStatus))
+     //var rounds = ScannerInput.readNextInt List<Rounds>
+     var noAttempts = ScannerInput.readNextInt("enter number of attempts")
+     val isAdded = playerAPI.add(Player(playerId,name,rounds,noAttemps))
+
+     if (isAdded) {
+         println("Added Successfully")
+     } else {
+         println("Add Failed")
+     }*/
+
+    //add api and controllers back in.
+}
+
+
+fun listPlayers(){
+    logger.info{"listPlayers() function invoked"}
+}
+
+fun updatePlayer(){
+    logger.info{"updatePlayer() function invoked"}}
+
+fun deletePlayer(){
+    logger.info{"deletePlayer() function invoked"}
+}
+//----------------------------------------
 
 
 fun exitApp(){
