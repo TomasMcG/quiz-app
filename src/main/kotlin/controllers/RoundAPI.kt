@@ -53,8 +53,13 @@ class RoundAPI (serializerType: Serializer){
     fun updateQuestionsAttempted(roundToEdit: Rounds?, newNoQuestionsAttempted: Int){roundToEdit?.questionsAttempted = newNoQuestionsAttempted
     }
 
-    fun updateIsRoundCompleted(roundToEdit: Rounds?,newRoundCompletionStatus: Boolean){roundToEdit?.isCompleted = newRoundCompletionStatus}
+  fun setRoundToComplete(roundToEdit: Rounds){
+      roundToEdit.isCompleted = true
 
+  }
+    fun setRoundToIncomplete(roundToEdit: Rounds){
+        roundToEdit.isCompleted = false
+    }
 
     @Throws(Exception::class)
     fun load() {

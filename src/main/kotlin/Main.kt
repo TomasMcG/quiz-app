@@ -192,6 +192,7 @@ fun updateQuestion(){
                         round.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
                     3 ->{ val newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
                         round.updateQuestionId(questionToEdit,newQuestionId)}
+
                     99 -> updateQuestion()
                     100 -> updateRound()
                     0 -> println("exiting")
@@ -253,8 +254,9 @@ fun updateRound() {
                             roundAPI.updateRoundId(roundToEdit,newRoundId)}
                         3 -> { val newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
                             roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
+                        4 -> setRoundCompletionStatus(roundToEdit)
 
-                        4 -> updateQuestion()
+                        5 -> updateQuestion()
                         99 -> updateRound()
                         0 -> println("exiting")
 
@@ -273,10 +275,11 @@ fun updateRound() {
 fun roundAttributeMenu(roundToEdit:Rounds ):Int = ScannerInput.readNextInt(
     """
         Please Choose the attribute you would like to update
-        1.Title: ${roundToEdit.roundTitle}
+        1. Title: ${roundToEdit.roundTitle}
         2. RoundId: ${roundToEdit.roundId}
         3. Number of Attempts: ${roundToEdit.questionsAttempted}
-        4. Questions: ${roundToEdit.questions}
+        4. Round Completion Status: ${roundToEdit.isCompleted}
+        5. Questions: ${roundToEdit.questions}
         99. Choose a different Round to update
         0. Exit to main menu
     """.trimIndent()
@@ -319,8 +322,7 @@ fun loadRound() {
     }
 }
 
-fun setRoundCompletionStatus(){
-    val roundToEdit = askUserToChooseRound()
+fun setRoundCompletionStatus(roundToEdit: Rounds){
     if (roundToEdit != null) {
         // Display the current note details so you can decided what you want to change
         if (roundToEdit.isCompleted == false) {
@@ -330,8 +332,8 @@ fun setRoundCompletionStatus(){
                 2. No""".trimIndent())
             when(choice)
             {
-                1 -> roundAPI.setRoundToComplete()
-                2 -> println("Exiting")
+                1 -> roundAPI.setRoundToComplete(roundToEdit)
+                2 -> println("The round status is incomplete")
             }
 
         }
@@ -342,8 +344,8 @@ fun setRoundCompletionStatus(){
                 2. No""".trimIndent())
             when(choice)
             {
-                1 -> roundAPI.setRoundToIncomplete()
-                2 -> println("Exiting")
+                1 -> roundAPI.setRoundToIncomplete(roundToEdit)
+                2 -> println("The round status is complete")
             }
 
         }
