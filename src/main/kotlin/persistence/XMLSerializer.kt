@@ -28,7 +28,8 @@ class XMLSerializer(private val file: File) : Serializer {
     @Throws(Exception::class)
     override fun read(): Any {
         val xStream = XStream(DomDriver())
-        xStream.allowTypes(arrayOf(Rounds::class.java))
+        xStream.allowTypes(arrayOf(Any::class.java))
+        xStream.allowTypesByWildcard(arrayOf("models.*"))
         val inputStream = xStream.createObjectInputStream(FileReader(file))
         val obj = inputStream.readObject() as Any
         inputStream.close()

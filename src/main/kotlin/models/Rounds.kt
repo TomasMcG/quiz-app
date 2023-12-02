@@ -1,6 +1,7 @@
 package models
 
 
+import persistence.Serializer
 import utils.Utilities.emptyArrayList
 import utils.Utilities.formatListString
 
@@ -9,7 +10,8 @@ data class Rounds(
     var roundTitle: String,
     var questionsAttempted: Int = 0,
     var questions: ArrayList<Questions?> =emptyArrayList()
-) {
+
+    ) {
     //----------------------------------------------api function for questions objects below.
     //incrementer for question id
     private var lastQuestionId = 1
@@ -68,7 +70,18 @@ data class Rounds(
     change how update works later.
     */
 
+/*
+    @Throws(Exception::class)
+    fun load() {
+        questions = serializer.read() as ArrayList<Questions?>
+    }
 
+    @Throws(Exception::class)
+    fun store() {
+        serializer.write(questions)
+    }
+
+    */
 
 
 }

@@ -10,6 +10,7 @@ import java.lang.System.exit
 
 private val logger = KotlinLogging.logger {}
 private val roundAPI = RoundAPI(XMLSerializer(File("rounds.xml")))
+//private val questionAPI = Rounds(XMLSerializer(File("roundsQuestions.xml")))
 fun main(args: Array<String>) {
     runMenu()
 
@@ -210,14 +211,14 @@ private fun askUserToChooseQuestion(round: Rounds): Questions? {
 
 fun listQuestions(){
     logger.info{"listQuestions() function invoked"}
-    val round: Rounds? = askUserToChooseRound()
-    if (round != null) {
+    askUserToChooseRound()
+    /*if (round != null) {
         val question: Questions? = askUserToChooseQuestion(round)
         if (question != null) {
             println(round.listAllQuestions())
 
         }
-    }
+  }*/
 }
 
 fun updateQuestion(){

@@ -127,16 +127,16 @@ class RoundsQuestionsAPITest {
     }
 */
 
-/*
+
     @Nested
     inner class DeleteQuesions{
         @Test
         fun `deleting a Quesion that does not exist, return null`(){
-            Assertions.assertNull(emptyRound!!.deleteQuestions(0))
-            Assertions.assertNull(emptyRound!!.deleteQuestions(-1))
-            Assertions.assertNull(emptyRound!!.deleteQuestions(5))
+            Assertions.assertFalse(emptyRound!!.deleteQuestions(0))
+            Assertions.assertFalse(emptyRound!!.deleteQuestions(-1))
+            Assertions.assertFalse(emptyRound!!.deleteQuestions(5))
         }
-
+/*
         @Test
         fun `deleting a Round that exists and returns deleted object`(){
             Assertions.assertEquals(4, geographyRound!!.numberOfQuestions())
@@ -146,9 +146,9 @@ class RoundsQuestionsAPITest {
             Assertions.assertEquals(2, geographyRound!!.numberOfQuestions())
         }
 
-
+*/
     }
 
- */
+
 
 }
