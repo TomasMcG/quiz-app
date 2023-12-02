@@ -54,7 +54,7 @@ fun runRoundMenu(){
         val option = roundMenu()
         when(option){
             1 -> addRound()
-            2 -> println(roundAPI.listAllRounds())
+            2 -> listRounds()
             3 -> updateRound()
             4  -> deleteRound()
             5 -> addQuestionToRound()
@@ -230,9 +230,29 @@ fun addRound(){
     }
 }
 
+fun listRounds() {
 
+    if (roundAPI.numberOfRounds() > 0) {
+        val option = ScannerInput.readNextInt(
+            """
+                  > --------------------------------
+                  > |   1) View ALL Rounds          
+                  > |   2) View Completed Rounds      
+                  > |   3) View Incomplete Rounds    
+                  > --------------------------------
+         > ==>> """.trimMargin(">")
+        )
 
-
+        when (option) {
+            1 -> roundAPI.listAllRounds()
+            2 -> roundAPI.listCompletedRounds()
+            3 -> roundAPI.listIncompleteRounds()
+            else -> println("Invalid option entered: $option")
+        }
+    } else {
+        println("Option Invalid - No notes stored")
+    }
+}
 
 fun updateRound() {
     logger.info { "updateRound() function invoked" }
