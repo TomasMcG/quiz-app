@@ -185,11 +185,12 @@ fun updateQuestion(){
             var option: Int
             do{option = questionAttributeMenu(questionToEdit)
                 when(option){
-                    1 -> {var newQuestionText: String = ScannerInput.readNextLine("Please enter the new question text")
+                    1 -> {
+                        val newQuestionText: String = ScannerInput.readNextLine("Please enter the new question text")
                         round.updateQuestionText(questionToEdit,newQuestionText)}
-                    2 ->{ var newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
+                    2 ->{ val newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
                         round.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
-                    3 ->{ var newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
+                    3 ->{ val newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
                         round.updateQuestionId(questionToEdit,newQuestionId)}
                     99 -> updateQuestion()
                     100 -> updateRound()
@@ -218,7 +219,7 @@ fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
     val roundTitle = ScannerInput.readNextLine("Enter a title for the round: ")
-    var questionsAttempted = ScannerInput.readNextInt("Enter the number of attempts: ")
+    val questionsAttempted = ScannerInput.readNextInt("Enter the number of attempts: ")
     val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle, questionsAttempted = questionsAttempted))
 
     if (isAdded) {
@@ -245,11 +246,12 @@ fun updateRound() {
            var option: Int
                 do{option = roundAttributeMenu(roundToEdit)
                     when(option){
-                        1 -> {var newTitle: String = ScannerInput.readNextLine("Please enter the new title")
+                        1 -> {
+                            val newTitle: String = ScannerInput.readNextLine("Please enter the new title")
                             roundAPI.updateRoundTitle(roundToEdit,newTitle)}
-                        2 ->{ var newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
+                        2 ->{ val newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
                             roundAPI.updateRoundId(roundToEdit,newRoundId)}
-                        3 -> { var newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
+                        3 -> { val newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
                             roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
                         4 -> updateQuestion()
                         99 -> updateRound()
@@ -330,17 +332,17 @@ fun tryQuiz() {
     if (chosenRound != null) {
         println(
             """
-        You have chosen the ${chosenRound?.roundTitle} Round
+        You have chosen the ${chosenRound.roundTitle} Round
     """.trimIndent()
         )
         var numberOfCorrectAnswers = 0
-        var numberOfQuestions = chosenRound?.numberOfQuestions()
+        val numberOfQuestions = chosenRound.numberOfQuestions()
         //first display question 1,
         var index: Int = 0
-        while (index < numberOfQuestions!!) {
-            println(chosenRound?.questions!![index])
-            var userAnswer: String = ScannerInput.readNextLine("Please Enter the Correct Answer")
-            if (userAnswer == chosenRound?.questions!![index]!!.correctAnswer) {
+        while (index < numberOfQuestions) {
+            println(chosenRound.questions[index])
+            val userAnswer: String = ScannerInput.readNextLine("Please Enter the Correct Answer")
+            if (userAnswer == chosenRound.questions[index]!!.correctAnswer) {
                 numberOfCorrectAnswers++
             }
             index++

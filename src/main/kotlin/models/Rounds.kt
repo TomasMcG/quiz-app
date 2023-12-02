@@ -9,7 +9,8 @@ data class Rounds(
     var roundId: Int = 0,
     var roundTitle: String,
     var questionsAttempted: Int = 0,
-    var questions: ArrayList<Questions?> =emptyArrayList()
+    var questions: ArrayList<Questions?> =emptyArrayList(),
+    var isCompleted: Boolean = false
 
     ) {
     //----------------------------------------------api function for questions objects below.
