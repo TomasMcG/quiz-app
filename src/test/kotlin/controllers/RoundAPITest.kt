@@ -106,8 +106,20 @@ class RoundAPITest {
 @Nested
 inner class numberOfRounds{
     @Test
-    fun numberOfRoundsCorrect(){
+    fun numberOfRounds(){
         assertEquals(4, populatedRounds!!.numberOfRounds())
+        assertEquals(0, emptyRounds!!.numberOfRounds())
+    }
+
+    @Test
+    fun numberOfRoundsCompleted(){
+        assertEquals(4, populatedRounds!!.numberOfRounds())
+        assertEquals(0, emptyRounds!!.numberOfRounds())
+    }
+
+    @Test
+    fun numberOfRoundsIncomplete(){
+        assertEquals(4, populatedRounds!!.numberOfIncompleteRounds())
         assertEquals(0, emptyRounds!!.numberOfRounds())
     }
 }

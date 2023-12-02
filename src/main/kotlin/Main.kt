@@ -5,6 +5,7 @@ import mu.KotlinLogging
 import persistence.XMLSerializer
 
 import utils.ScannerInput
+import utils.Utilities.emptyArrayList
 import java.io.File
 import java.lang.System.exit
 
@@ -111,8 +112,19 @@ private fun addQuestionToRound() {
         var questionText = ScannerInput.readNextLine("\t Question and possible answers: ")
         var correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
         var difficulty = ScannerInput.readNextLine("\t Select Difficulty(Easy,Medium,Hard): ")
-        var possibleAnswers = arrayListOf("","")
-
+        var possibleAnswers = mutableListOf<String>()
+        var moreAnswers = 1
+        do{var newPossibleAnswers = ScannerInput.readNextLine("Enter a new possible answer")
+                possibleAnswers.add(newPossibleAnswers)
+            println("Possible answers so far")
+            possibleAnswers.forEach{println(it)}
+            moreAnswers = ScannerInput.readNextInt("""
+                Do you want to enter another possible value:
+                1.Yes 
+                2. No
+            """.trimIndent())
+        }
+            while(moreAnswers == 1)
         if (round.addQuestion(Questions(1,questionText,possibleAnswers,correctAnswer,difficulty,
 
             )))
