@@ -1,5 +1,6 @@
 package models
 import controllers.RoundAPI
+import mu.KotlinLogging
 import org.junit.jupiter.api.*
 import persistence.XMLSerializer
 import utils.Utilities.emptyArrayList
@@ -12,29 +13,36 @@ class RoundsQuestionsAPITest {
 //geography round is my populated list that stores my arrays of Questions
     //run the Questions tests on the grography rounds array list or on it as an attribute of geography round
 
-    private var geographyRound: Rounds? = null
-    private var emptyRound: Rounds? = null
 
 
+    private val logger = KotlinLogging.logger {}
+
+    //questions objects
     private var geographyQuestion1: Questions? = null
     private var geographyQuestion2: Questions? = null
     private var geographyQuestion3: Questions? = null
     private var geographyQuestion4: Questions? = null
 
+    //Arraylists of questions objects
+    private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
+    private var emptyQuestionsRound: ArrayList<Questions?> = emptyArrayList()
+
+    //individual round objects
+    private var geographyRound: Rounds? = null
+    private var emptyRound: Rounds? = null
+
+    //array list of rounds
     private var populatedRounds: RoundAPI? = RoundAPI(XMLSerializer(File("roundsQuestionsTests.xml")))
     private var emptyRounds: RoundAPI? = RoundAPI(XMLSerializer(File("roundsQuestionsTests.xml")))
 
-    //private var geographyQuestions: ArrayList<Questions> = emptyArrayList()
-    private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
 
-    private var emptyQuestionsRound: ArrayList<Questions?> = emptyArrayList()
 
 
 
 
     @BeforeEach
     fun setup() {
-        geographyRound= Rounds( 1,"geographyRound",4,geographyQuestions)
+
 
 
         geographyQuestion1 = Questions(1,
@@ -61,9 +69,9 @@ class RoundsQuestionsAPITest {
             |2.4 million
             |3.6 million
         """.trimMargin(),"5 million")
-        emptyQuestionsRound
+         var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
+        geographyRound= Rounds( 1,"geographyRound",4,geographyQuestions)
 
-        //adding 5 round to the rounds api
         populatedRounds!!.add(geographyRound!!)
 
 
@@ -96,7 +104,9 @@ class RoundsQuestionsAPITest {
             |3.AnswerThree
         """.trimMargin(),"5 million")
             geographyRound?.addQuestion(newQuestion)
-            assertEquals(5,geographyRound?.numberOfQuestions())
+            geographyRound?.questions?.contains(newQuestion)
+
+          //  logger.info{geographyRound?.questions}
             assertEquals(5,geographyRound?.questions?.size)
 
         }
@@ -129,24 +139,23 @@ class RoundsQuestionsAPITest {
 
 
     @Nested
-    inner class DeleteQuesions{
+    inner class DeleteQuestions{
         @Test
-        fun `deleting a Quesion that does not exist, return null`(){
-            Assertions.assertFalse(emptyRound!!.deleteQuestions(0))
-            Assertions.assertFalse(emptyRound!!.deleteQuestions(-1))
-            Assertions.assertFalse(emptyRound!!.deleteQuestions(5))
-        }
-/*
-        @Test
-        fun `deleting a Round that exists and returns deleted object`(){
-            Assertions.assertEquals(4, geographyRound!!.numberOfQuestions())
-            Assertions.assertEquals(geographyQuestion1, geographyRound!!.deleteQuestions(1))
-            Assertions.assertEquals(3, populatedRounds!!.numberOfRounds())
-            Assertions.assertEquals(geographyQuestion1, geographyRound!!.deleteQuestions(2))
-            Assertions.assertEquals(2, geographyRound!!.numberOfQuestions())
+        fun `deleting a Question that does not exist, return null`(){
+            Assertions.assertFalse(geographyRound!!.deleteQuestions(0))
+            Assertions.assertFalse(geographyRound!!.deleteQuestions(-1))
+            Assertions.assertFalse(geographyRound!!.deleteQuestions(5))
         }
 
-*/
+        @Test
+        fun `deleting a Question that exists and returns deleted object`(){
+            Assertions.assertEquals(4, geographyRound!!.numberOfQuestions())
+            Assertions.assertEquals(true,geographyRound!!.deleteQuestions(1))
+            Assertions.assertEquals(3, geographyRound!!.numberOfQuestions())
+
+        }
+
+
     }
 
 
