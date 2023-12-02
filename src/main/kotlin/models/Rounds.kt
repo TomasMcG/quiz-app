@@ -13,6 +13,14 @@ data class Rounds(
     var isCompleted: Boolean = false
 
     ) {
+    override fun toString() =
+        if (isCompleted)
+            "$roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n ${questions.toString()}"
+        else
+            "$roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n ${questions.toString()}"
+
+
+
     //----------------------------------------------api function for questions objects below.
     //incrementer for question id
     private var lastQuestionId = 1

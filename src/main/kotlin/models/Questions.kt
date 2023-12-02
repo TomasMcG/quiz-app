@@ -7,4 +7,6 @@ data class Questions(
     var correctAnswer: String,
     var difficulty: String,
 
-){}
+){
+
+}

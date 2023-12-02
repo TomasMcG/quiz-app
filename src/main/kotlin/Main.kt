@@ -401,7 +401,7 @@ fun tryQuiz() {
 """.trimIndent()
     )
     val chosenRound = askUserToChooseRound()
-    if (chosenRound != null) {
+    if (chosenRound != null && chosenRound.questions.isNotEmpty() ) {
         println(
             """
         You have chosen the ${chosenRound.roundTitle} Round
@@ -422,9 +422,12 @@ fun tryQuiz() {
         println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
         println("Goodbye")
 
-    }else{
-        println("Incorrect Round Selected.")
+    }else if(chosenRound == null){
+        println("That round does not exist")
     }
+    else if( chosenRound.questions.isEmpty()
+
+    ){println("The chose round has no questions")}
 }
 
 //--------------------------------------------------------
