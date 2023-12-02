@@ -19,22 +19,11 @@ fun main(args: Array<String>) {
 fun mainMenu() : Int {
     return ScannerInput.readNextInt(""" 
          > ----------------------------------
-         > |         Admin CRUD Menu         
+         > |         Main Menu        
          > ----------------------------------
-         > | Player MENU                      
-         > |   1) Add a Player                
-         > |   2) List all Players            
-         > |   3) Update a Player             
-         > |   4) Delete a Player             
-         > ----------------------------------
-         > | Questions MENU                      
-         > |   5) Add a Question                
-         > |   6) List all Questions            
-         > |   7) Update a Question             
-         > |   8) Delete a Question             
-         > ----------------------------------
-         > | Round MENU                      
-         > |   9) Edit Round values menu         
+         > |   1) Run player Menu
+         > |   2) Run Round and Questions Menu                        
+         > |   3) Try the Quiz                         
          > ----------------------------------         
          > |   0) Exit                      
          > ----------------------------------
@@ -46,21 +35,51 @@ fun runMenu(){
     do{
         val option = mainMenu()
         when(option){
-           // 1 -> managePlayer()
-            1 -> addPlayer()
-            2 -> listPlayers()
-            3 -> updatePlayer()
-            4 -> deletePlayer()
-            5 -> addQuestionToRound()
-            6 -> listQuestions()
-            7 -> updateQuestion()
-            8 -> deleteQuestion()
-            9 -> runRoundMenu()
-
+            1 -> runPlayerMenu()
+            2 -> runRoundMenu()
+            3 -> tryQuiz()
             0 -> exitApp()
             else -> println("Invalid option entered: ${option}")
         }
     }while(true)
+
+}
+
+fun tryQuiz(){println("Not added yet")}
+
+fun playerMenu(): Int {
+    return ScannerInput.readNextInt(""" 
+         > ----------------------------------
+         > |Player Menu(not functional yet)       
+         > ----------------------------------  
+         > |   1) Add a Player
+         > |   2) List all Players
+         > |   3) Update a Player
+         > |   4) Delete a Player
+         > ----------------------------------         
+         > |   0) Exit   
+         >    -1)Back to Main Menu               
+         > ----------------------------------
+         > ==>> """.trimMargin(">"))
+
+}
+
+
+
+fun runPlayerMenu(){
+    do{
+        val option = playerMenu()
+        when(option){
+            1 -> addPlayer()
+            2 -> listPlayers()
+            3 -> updatePlayer()
+            4 -> deletePlayer()
+
+            0 -> exitApp()
+            -1 -> println("Going back to main menu")
+            else -> println("Invalid option entered: ${option}")
+        }
+    }while(option != 0 && option != -1)
 
 }
 
@@ -72,8 +91,12 @@ fun runRoundMenu(){
             2 -> println(roundAPI.listAllRounds())
             3 -> updateRound()
             4  -> deleteRound()
-            5 -> saveRound()
-            6 -> loadRound()
+            5 -> addQuestionToRound()
+            6 -> listQuestions()
+            7 -> updateQuestion()
+            8 -> deleteQuestion()
+            9 -> saveRound()
+            10 -> loadRound()
 
             0 -> exitApp()
             -1 -> println("Going back to main menu")
@@ -87,15 +110,23 @@ fun roundMenu()
     : Int {
         return ScannerInput.readNextInt(""" 
          > ----------------------------------
-         > |         Round CRUD Menu         
-         > ----------------------------------              
+         > |Round and Questions CRUD Menu         
+         > ----------------------------------  
+         >   Round Menu
          > |   1) Add a Round                
          > |   2) List all Rounds            
          > |   3) Update a Round             
          > |   4) Delete a Round      
-         > |   5) Save Rounds
-         > |   6) Load Rounds
-         >      
+         > ----------------------------------
+         > | Questions MENU                      
+         > |   5) Add a Question                
+         > |   6) List all Questions            
+         > |   7) Update a Question             
+         > |   8) Delete a Question             
+         > ----------------------------------
+         > | Save and Load Menu
+         > |   9) Save Rounds
+         > |   10) Load Rounds
          > ----------------------------------         
          > |   0) Exit   
          >    -1)Back to Main Menu               
