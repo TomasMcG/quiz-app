@@ -25,11 +25,13 @@ class RoundsQuestionsAPITest {
 
     //Arraylists of questions objects
     private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
-    private var emptyQuestionsRound: ArrayList<Questions?> = emptyArrayList()
+
 
     //individual round objects
     private var geographyRound: Rounds? = null
-    private var emptyRound: Rounds? = null
+    private var emptyQuestionsRound: Rounds? = null
+
+
 
     //array list of rounds
     private var populatedRounds: RoundAPI? = RoundAPI(XMLSerializer(File("roundsQuestionsTests.xml")))
@@ -71,7 +73,7 @@ class RoundsQuestionsAPITest {
         """.trimMargin(),"5 million")
          var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
         geographyRound= Rounds( 1,"geographyRound",4,geographyQuestions)
-
+        emptyQuestionsRound = Rounds(2,"emptyQuestionsRound,4")
         populatedRounds!!.add(geographyRound!!)
 
 
@@ -111,13 +113,12 @@ class RoundsQuestionsAPITest {
 
         }
     }
-
-   /*@Nested
+    @Nested
     inner class ListQuestions {
 
         @Test
         fun `listAllQuestions returns No Questions Stored message when ArrayList is empty`() {
-            Assertions.assertEquals(0, emptyQuestionsRound!!.numberOfQuestions())
+            Assertions.assertEquals( 0,emptyQuestionsRound!!.numberOfQuestions())
             Assertions.assertTrue(emptyQuestionsRound!!.listAllQuestions().lowercase().contains("no questions"))
         }
 
@@ -135,7 +136,7 @@ class RoundsQuestionsAPITest {
 
         }
     }
-*/
+
 
 
     @Nested
