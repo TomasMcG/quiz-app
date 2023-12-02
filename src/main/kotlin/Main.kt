@@ -109,7 +109,7 @@ fun roundMenu()
 private fun addQuestionToRound() {
     val round: Rounds? = askUserToChooseRound()
     if (round != null) {
-        var questionText = ScannerInput.readNextLine("\t Question and possible answers: ")
+        var questionText = ScannerInput.readNextLine("\t Type the Question you want to ask: ")
         var correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
         var difficulty = ScannerInput.readNextLine("\t Select Difficulty(Easy,Medium,Hard): ")
         var possibleAnswers = mutableListOf<String>()
@@ -139,6 +139,19 @@ private fun askUserToChooseRound(): Rounds? {
     println(roundAPI.listAllRounds())
     if ( roundAPI.numberOfRounds() > 0) {
         val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to whose questions you want to deal with: "))
+        if (round != null) {
+            return round
+        } else {
+            println("Round id is not valid")
+        }
+    }
+    return null //selected note is not active
+}
+
+private fun askUserToChooseRoundByTitle(): Rounds? {
+    println(roundAPI.listAllRoundsTitles())
+    if ( roundAPI.numberOfRounds() > 0) {
+        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to play: "))
         if (round != null) {
             return round
         } else {
@@ -400,7 +413,7 @@ fun tryQuiz() {
     To get started on the quiz please choose a round to try out
 """.trimIndent()
     )
-    val chosenRound = askUserToChooseRound()
+    val chosenRound = askUserToChooseRoundByTitle()
     if (chosenRound != null && chosenRound.questions.isNotEmpty() ) {
         println(
             """
