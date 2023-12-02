@@ -316,32 +316,40 @@ fun loadRound() {
 }
 //---------------------------------------------------------
 //Quiz Interface Section
-fun tryQuiz(){
+fun tryQuiz() {
 
-    println("""
+    println(
+        """
     Welcome to the quiz
     Our quiz has multiple rounds based on different things such as History or Geography
     To get started on the quiz please choose a round to try out
-""".trimIndent())
-val chosenRound = askUserToChooseRound()
-    println("""
+""".trimIndent()
+    )
+    val chosenRound = askUserToChooseRound()
+    if (chosenRound != null) {
+        println(
+            """
         You have chosen the ${chosenRound?.roundTitle} Round
-    """.trimIndent())
-    var numberOfCorrectAnswers = 0
-    var numberOfQuestions = chosenRound?.numberOfQuestions()
-    //first display question 1,
-    var index: Int = 0
-    if( index < numberOfQuestions!!){
-    println(chosenRound?.questions!![index])
-        var userAnswer:String = ScannerInput.readNextLine("Please Enter the Correct Answer")
-        if(userAnswer == chosenRound?.questions!![index]!!.correctAnswer){
-            numberOfCorrectAnswers++
+    """.trimIndent()
+        )
+        var numberOfCorrectAnswers = 0
+        var numberOfQuestions = chosenRound?.numberOfQuestions()
+        //first display question 1,
+        var index: Int = 0
+        while (index < numberOfQuestions!!) {
+            println(chosenRound?.questions!![index])
+            var userAnswer: String = ScannerInput.readNextLine("Please Enter the Correct Answer")
+            if (userAnswer == chosenRound?.questions!![index]!!.correctAnswer) {
+                numberOfCorrectAnswers++
+            }
+            index++
         }
-    index++
-    }
-    println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
-    println("Goodbye")
+        println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
+        println("Goodbye")
 
+    }else{
+        println("Incorrect Round Selected.")
+    }
 }
 
 //--------------------------------------------------------
