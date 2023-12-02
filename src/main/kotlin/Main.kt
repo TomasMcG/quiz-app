@@ -253,6 +253,7 @@ fun updateRound() {
                             roundAPI.updateRoundId(roundToEdit,newRoundId)}
                         3 -> { val newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
                             roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
+
                         4 -> updateQuestion()
                         99 -> updateRound()
                         0 -> println("exiting")
@@ -317,6 +318,40 @@ fun loadRound() {
         System.err.println("Error reading from file: $e")
     }
 }
+
+fun setRoundCompletionStatus(){
+    val roundToEdit = askUserToChooseRound()
+    if (roundToEdit != null) {
+        // Display the current note details so you can decided what you want to change
+        if (roundToEdit.isCompleted == false) {
+            val choice = ScannerInput.readNextInt("""
+                The round is currently incomplete. Do you want to see it to completed?
+                1. yes
+                2. No""".trimIndent())
+            when(choice)
+            {
+                1 -> roundAPI.setRoundToComplete()
+                2 -> println("Exiting")
+            }
+
+        }
+        else{
+            val choice = ScannerInput.readNextInt("""
+                The round is currently incomplete. Do you want to see it to Incompleted?
+                1. yes
+                2. No""".trimIndent())
+            when(choice)
+            {
+                1 -> roundAPI.setRoundToIncomplete()
+                2 -> println("Exiting")
+            }
+
+        }
+
+    }
+}
+
+
 //---------------------------------------------------------
 //Quiz Interface Section
 fun tryQuiz() {
