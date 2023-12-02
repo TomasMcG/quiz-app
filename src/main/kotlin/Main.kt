@@ -75,10 +75,10 @@ fun runRoundMenu(){
             6 -> loadRound()
 
             0 -> exitApp()
-            -1 -> mainMenu()
+            -1 -> println("Going back to main menu")
             else -> println("Invalid option entered: ${option}")
         }
-    }while(true)
+    }while(option != 0 && option != -1)
 
 }
 

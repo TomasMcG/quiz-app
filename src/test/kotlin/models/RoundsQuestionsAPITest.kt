@@ -2,6 +2,7 @@ package models
 import controllers.RoundAPI
 import org.junit.jupiter.api.*
 import persistence.XMLSerializer
+import utils.Utilities.emptyArrayList
 import java.io.File
 import kotlin.test.assertEquals
 
@@ -23,7 +24,8 @@ class RoundsQuestionsAPITest {
 
     //private var geographyQuestions: ArrayList<Questions> = emptyArrayList()
     private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
-
+    //private var emptyQuestionsRound: ArrayList<Questions?> = emptyArrayList()
+    private var emptyQuestionsRound: Rounds? = null
 
 
 
@@ -77,6 +79,12 @@ class RoundsQuestionsAPITest {
         videoGameRound = null
         populatedRounds = null
         emptyRounds = null
+        geographyQuestion1 = null
+        geographyQuestion2 = null
+        geographyQuestion3 = null
+        geographyQuestion4 = null
+
+
 
 
     }
@@ -98,6 +106,25 @@ class RoundsQuestionsAPITest {
         }
     }
 
+   /* @Nested
+    inner class ListQuestions {
+
+        @Test
+        fun `listAllQuestions returns No Questions Stored message when ArrayList is empty`() {
+            Assertions.assertEquals(0, emptyQuestionsRound!!.numberOfQuestions())
+            Assertions.assertTrue(emptyQuestionsRound!!.listAllQuestions().lowercase().contains("no questions"))
+        }
+
+        @Test
+        fun `listAllQuestions returns Questions when ArrayList has Questions stored`() {
+            Assertions.assertEquals(4, geographyRound!!.numberOfQuestions())
+            val roundsString = geographyRound!!.listAllQuestions().lowercase()
+            Assertions.assertTrue(roundsString.contains("waterford"))
+            Assertions.assertTrue(roundsString.contains("cork"))
+            Assertions.assertTrue(roundsString.contains("sligo"))
 
 
+        }
+    }
+*/
 }
