@@ -1,15 +1,12 @@
 package controllers
 import models.Rounds
-import models.Questions
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import persistence.XMLSerializer
-import persistence.YAMLSerializer
 import java.io.File
-import java.time.LocalDate
 
 class RoundAPITest {
 
@@ -28,7 +25,7 @@ class RoundAPITest {
        historyRound = Rounds(2 , "historyRound" )
         televisionRound = Rounds(3, "televisionRound")
         videoGameRound = Rounds(4, "videoGameRound" , 0)
-        println(geographyRound!!.roundId)
+
 
         //adding 5 round to the rounds api
         populatedRounds!!.add(geographyRound!!)
@@ -58,6 +55,7 @@ class RoundAPITest {
             assertEquals(4, populatedRounds!!.numberOfRounds())
             assertTrue(populatedRounds!!.add(newRound))
             assertEquals(5, populatedRounds!!.numberOfRounds())
+
             //new rounds has latest id so it is the numberOfRounds. could also
             assertEquals(newRound, populatedRounds!!.findRounds(5))
 
