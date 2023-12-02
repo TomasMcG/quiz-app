@@ -211,14 +211,14 @@ private fun askUserToChooseQuestion(round: Rounds): Questions? {
 
 fun listQuestions(){
     logger.info{"listQuestions() function invoked"}
-    askUserToChooseRound()
-    /*if (round != null) {
-        val question: Questions? = askUserToChooseQuestion(round)
+    val round = askUserToChooseRound()
+    if (round != null) {
+        val question: ArrayList<Questions?> = round.questions
         if (question != null) {
             println(round.listAllQuestions())
 
         }
-  }*/
+  }
 }
 
 fun updateQuestion(){
