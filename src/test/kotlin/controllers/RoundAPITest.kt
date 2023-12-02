@@ -86,6 +86,17 @@ class RoundAPITest {
 
 
         }
+
+        @Test
+        fun `listCompleted Rounds`() {
+            assertEquals(0, emptyRounds!!.numberOfRounds())
+            assertTrue(emptyRounds!!.listAllRounds().lowercase().contains("no rounds"))
+        }
+        @Test
+        fun `list incomplete Rounds`() {
+            assertEquals(0, emptyRounds!!.numberOfRounds())
+            assertTrue(emptyRounds!!.listAllRounds().lowercase().contains("no rounds"))
+        }
     }
 
 @Nested
@@ -121,6 +132,17 @@ inner class numberOfRounds{
 
 
 
+        }
+
+        @Test
+        fun `setting a round to complete and incomplete`(){
+
+            assertTrue(geographyRound?.isCompleted == false)
+            populatedRounds!!.setRoundToComplete(geographyRound!!)
+            assertTrue(geographyRound?.isCompleted == true)
+
+            populatedRounds!!.setRoundToIncomplete(geographyRound!!)
+            assertTrue(geographyRound?.isCompleted == false)
         }
 
     }
