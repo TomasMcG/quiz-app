@@ -41,7 +41,7 @@ data class Rounds(
 //cast it as any so it can use the utility.
 
 
-    fun updateQuestions(id: Int, newQuestions: Questions): Boolean {
+    /*fun updateQuestions(id: Int, newQuestions: Questions): Boolean {
         val foundQuestions = findQuestion(id)  //if the object exists, use the details passed in the newItem parameter to
         //update the found object in the Set
         if (foundQuestions != null) {
@@ -53,22 +53,11 @@ data class Rounds(
 
         //if the object was not found, return false, indicating that the update was not successful
         return false
-    }
+    }*/
 
-    /*fun updateQuestionsId(id: Int, newQuestions: Questions): Boolean {
-        val foundQuestions = findQuestion(id)  //if the object exists, use the details passed in the newItem parameter to
-        //update the found object in the Set
-        if (foundQuestions != null) {
-            foundQuestions.itemContents = newQuestions.questionContents
-            foundQuestions.isItemComplete = newQuestions.isItemComplete
-            return true
-        }
+    fun updateQuestionId(questionToEdit: Questions?,newQuestionId: Int){questionToEdit?.questionId = newQuestionId}
 
-        //if the object was not found, return false, indicating that the update was not successful
-        return false
-    }
-    change how update works later.
-    */
+
 
 /*
     @Throws(Exception::class)

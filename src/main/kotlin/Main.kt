@@ -237,7 +237,7 @@ fun updateQuestion(){
                     2 ->{ var newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
                         roundAPI.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
                     3 ->{ var newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
-                        roundAPI.updateQuestionId(questionToEdit,newQuestionId)}
+                        round.updateQuestionId(questionToEdit,newQuestionId)}
                     99 -> updateQuestion()
                     100 -> updateRound()
                     0 -> println("exiting")
