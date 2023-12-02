@@ -61,6 +61,13 @@ class RoundAPI (serializerType: Serializer){
         roundToEdit.isCompleted = false
     }
 
+    fun listCompletedRounds(){
+        rounds.filter{round -> round.isCompleted }
+    }
+    fun listIncompleteRounds(){
+        rounds.filter{round -> !round.isCompleted }
+    }
+
     @Throws(Exception::class)
     fun load() {
         rounds = serializer.read() as ArrayList<Rounds>

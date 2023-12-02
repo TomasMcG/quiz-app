@@ -244,9 +244,9 @@ fun listRounds() {
         )
 
         when (option) {
-            1 -> roundAPI.listAllRounds()
-            2 -> roundAPI.listCompletedRounds()
-            3 -> roundAPI.listIncompleteRounds()
+            1 -> println(roundAPI.listAllRounds())
+            2 ->  println(roundAPI.listCompletedRounds())
+            3 ->  println(roundAPI.listIncompleteRounds())
             else -> println("Invalid option entered: $option")
         }
     } else {
