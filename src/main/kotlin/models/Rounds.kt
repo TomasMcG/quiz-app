@@ -15,9 +15,9 @@ data class Rounds(
     ) {
     override fun toString() =
         if (isCompleted)
-            "$roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n ${questions.toString()}"
+            "$roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n questions: \n             ${questions.toString()}"
         else
-            "$roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n ${questions.toString()}"
+            "$roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n questions: \n             ${questions.toString()}"
 
 
 

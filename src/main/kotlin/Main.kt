@@ -412,7 +412,8 @@ fun tryQuiz() {
         //first display question 1,
         var index: Int = 0
         while (index < numberOfQuestions) {
-            println(chosenRound.questions[index])
+            println(chosenRound.questions[index]!!.questionText)
+            println(chosenRound.questions[index]!!.possibleAnswers)
             val userAnswer: String = ScannerInput.readNextLine("Please Enter the Correct Answer")
             if (userAnswer == chosenRound.questions[index]!!.correctAnswer) {
                 numberOfCorrectAnswers++

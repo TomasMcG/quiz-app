@@ -2,21 +2,31 @@
   <list>
     <models.Rounds>
       <roundId>1</roundId>
-      <roundTitle>new</roundTitle>
-      <questionsAttempted>2</questionsAttempted>
+      <roundTitle>geographyRound</roundTitle>
+      <questionsAttempted>0</questionsAttempted>
       <questions>
         <models.Questions>
           <questionId>1</questionId>
-          <questionText>new Questions , Ans1, Ans2</questionText>
-          <correctAnswer>Ans1</correctAnswer>
-        </models.Questions>
-        <models.Questions>
-          <questionId>2</questionId>
-          <questionText>new2, ans1, ans2</questionText>
-          <correctAnswer>ans1</correctAnswer>
+          <questionText>Which of the following counties is coastal:</questionText>
+          <possibleAnswers>
+            <string>Waterford</string>
+            <string>Tipperary</string>
+            <string>Limerick</string>
+          </possibleAnswers>
+          <correctAnswer>Waterford</correctAnswer>
+          <difficulty>Easy</difficulty>
         </models.Questions>
       </questions>
-      <lastQuestionId>3</lastQuestionId>
+      <isCompleted>false</isCompleted>
+      <lastQuestionId>2</lastQuestionId>
+    </models.Rounds>
+    <models.Rounds>
+      <roundId>2</roundId>
+      <roundTitle>televisionRound</roundTitle>
+      <questionsAttempted>0</questionsAttempted>
+      <questions/>
+      <isCompleted>false</isCompleted>
+      <lastQuestionId>1</lastQuestionId>
     </models.Rounds>
   </list>
 </object-stream>
