@@ -9,4 +9,14 @@ data class Questions(
 
 ){
 
+    override fun toString():String {
+        val possibleAnswersString = possibleAnswers.joinToString("\n")
+       return """ questionId: $questionId
+            difficulty: $difficulty
+            question: $questionText
+            possible answers: $possibleAnswersString
+            correct answer: $correctAnswer
+            
+            """".trimIndent()
+}
 }
