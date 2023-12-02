@@ -236,25 +236,28 @@ fun updateQuestion(){
                         roundAPI.updateQuestionText(questionToEdit,newQuestionText)}
                     2 ->{ var newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
                         roundAPI.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
+                    3 ->{ var newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
+                        roundAPI.updateQuestionId(questionToEdit,newQuestionId)}
                     99 -> updateQuestion()
+                    100 -> updateRound()
                     0 -> println("exiting")
                     //Eventually put in update questions here
-                }}while(option != 99 && option != 0)
-
+                }}while(option != 99 && option != 100 && option != 0)
         }
-
-            /*if (round.update(question.questionId, Questions(questionText = newContents))) {
-                println("Question contents updated")
-            } else {
-                println("Question contents NOT updated")
-            }
-        } else {
-            println("Invalid Question Id")
-        }
-    }*/
-}
     }
+}
 
+fun questionAttributeMenu(questionToEdit:Questions ):Int = ScannerInput.readNextInt(
+    """
+        Please Choose the attribute you would like to update
+        1.Question text: ${questionToEdit.questionText}
+        2. Question Correct Answe: ${questionToEdit.correctAnswer}
+        3. Question id: ${questionToEdit.questionId}
+        99. Choose a different Question to update
+        100. Choose a different round to update
+        0. Exit to main menu
+    """.trimIndent()
+)
 
 //------------------------------------------------------------------------------------
 fun addRound(){
