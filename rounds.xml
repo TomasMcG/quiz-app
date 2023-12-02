@@ -4,8 +4,14 @@
       <roundId>1</roundId>
       <roundTitle>new</roundTitle>
       <questionsAttempted>5</questionsAttempted>
-      <questions/>
-      <lastQuestionId>0</lastQuestionId>
+      <questions>
+        <models.Questions>
+          <questionId>0</questionId>
+          <questionText>New Question: pAns1,Pans2</questionText>
+          <correctAnswer>pAns1</correctAnswer>
+        </models.Questions>
+      </questions>
+      <lastQuestionId>1</lastQuestionId>
     </models.Rounds>
   </list>
 </object-stream>

@@ -167,9 +167,9 @@ private fun addQuestionToRound() {
 
 
 private fun askUserToChooseRound(): Rounds? {
-    roundAPI.listAllRounds()
+    println(roundAPI.listAllRounds())
     if ( roundAPI.numberOfRounds() > 0) {
-        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to add the Question to: "))
+        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to whose questions you want to see: "))
         if (round != null) {
             return round
         } else {
@@ -214,7 +214,7 @@ fun listQuestions(){
     if (round != null) {
         val question: Questions? = askUserToChooseQuestion(round)
         if (question != null) {
-            round.listAllQuestions()
+            println(round.listAllQuestions())
 
         }
     }
