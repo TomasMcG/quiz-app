@@ -12,6 +12,7 @@ private val logger = KotlinLogging.logger {}
 private val roundAPI = RoundAPI(XMLSerializer(File("rounds.xml")))
 //private val questionAPI = Rounds(XMLSerializer(File("roundsQuestions.xml")))
 fun main(args: Array<String>) {
+    loadRound()
     runMenu()
 
 }
