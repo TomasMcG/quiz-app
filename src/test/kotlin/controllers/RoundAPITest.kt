@@ -114,13 +114,13 @@ inner class numberOfRounds{
     @Test
     fun numberOfRoundsCompleted(){
         assertEquals(4, populatedRounds!!.numberOfRounds())
-        assertEquals(0, emptyRounds!!.numberOfRounds())
+        assertEquals(0, populatedRounds!!.numberOfCompletedRounds())
     }
 
     @Test
     fun numberOfRoundsIncomplete(){
         assertEquals(4, populatedRounds!!.numberOfIncompleteRounds())
-        assertEquals(0, emptyRounds!!.numberOfRounds())
+        assertEquals(0, emptyRounds!!.numberOfIncompleteRounds())
     }
 }
 
