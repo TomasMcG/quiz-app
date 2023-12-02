@@ -94,8 +94,12 @@ class RoundAPITest {
         }
         @Test
         fun `list incomplete Rounds`() {
-            assertEquals(0, emptyRounds!!.numberOfRounds())
-            assertTrue(emptyRounds!!.listAllRounds().lowercase().contains("no rounds"))
+            assertEquals(4, populatedRounds!!.numberOfRounds())
+            val roundsString = populatedRounds!!.listIncompleteRounds().lowercase()
+            assertTrue(roundsString.contains("geography"))
+            assertTrue(roundsString.contains("history"))
+            assertTrue(roundsString.contains("television"))
+            assertTrue(roundsString.contains("video"))
         }
     }
 

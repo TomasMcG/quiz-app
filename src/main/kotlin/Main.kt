@@ -108,9 +108,12 @@ fun roundMenu()
 private fun addQuestionToRound() {
     val round: Rounds? = askUserToChooseRound()
     if (round != null) {
-        if (round.addQuestion(Questions(1,
-                questionText = ScannerInput.readNextLine("\t Question and possible answers: "),
-                correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
+        var questionText = ScannerInput.readNextLine("\t Question and possible answers: ")
+        var correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
+        var difficulty = ScannerInput.readNextLine("\t Select Difficulty(Easy,Medium,Hard): ")
+        var possibleAnswers = arrayListOf("","")
+
+        if (round.addQuestion(Questions(1,questionText,possibleAnswers,correctAnswer,difficulty,
 
             )))
 
