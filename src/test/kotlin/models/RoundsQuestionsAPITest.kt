@@ -46,31 +46,37 @@ class RoundsQuestionsAPITest {
     fun setup() {
 
 
+        geographyQuestion1 = Questions(
+            1,
+            "Which of the following counties is coastal:",
+            mutableListOf("Waterford", "Tipperary", "Limerick"),
+            "Waterford",
+            "easy"
+        )
 
-        geographyQuestion1 = Questions(1,
-            """Which of the following counties is coastal:
-            |1.Waterford
-            |2.Tipperary
-            |3.Limerick
-        """.trimMargin(),"Waterford")
-        geographyQuestion2 = Questions(2,
-            """What city is the capital of Ireland:
-            |1.Dublin city
-            |2.Cork city
-            |3.Waterford City
-        """.trimMargin(),"Dublin city")
-        geographyQuestion3 = Questions(3,
-            """What county in Ireland has the smallest population:
-            |1.Sligo
-            |2.Leitrim
-            |3.Roscommon
-        """.trimMargin(),"Leitrim")
-        geographyQuestion4 = Questions(4,
-            """What is the population of Ireland(to the nearest million):
-            |1.5 million
-            |2.4 million
-            |3.6 million
-        """.trimMargin(),"5 million")
+        geographyQuestion2 = Questions(
+            2,
+            "What city is the capital of Ireland:",
+            mutableListOf("Dublin city", "Cork city", "Waterford City"),
+            "Dublin city",
+            "medium"
+        )
+
+        geographyQuestion3 = Questions(
+            3,
+            "What county in Ireland has the smallest population:",
+            mutableListOf("Sligo", "Leitrim", "Roscommon"),
+            "Leitrim",
+            "hard"
+        )
+
+        geographyQuestion4 = Questions(
+            4,
+            "What is the population of Ireland (to the nearest million):",
+            mutableListOf("5 million", "4 million", "6 million"),
+            "5 million",
+            "easy"
+        )
          var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1,geographyQuestion2,geographyQuestion3,geographyQuestion4)
         geographyRound= Rounds( 1,"geographyRound",4,geographyQuestions)
         emptyQuestionsRound = Rounds(2,"emptyQuestionsRound,4")
@@ -97,12 +103,13 @@ class RoundsQuestionsAPITest {
         @Test
         fun `Add questions to a round`() {
             assertEquals(4,geographyRound?.numberOfQuestions())
-           var newQuestion: Questions =Questions(5,
-                """New Question):
-            |1.AnswerOne
-            |2.AnswerTwo
-            |3.AnswerThree
-        """.trimMargin(),"5 million")
+            var newQuestion: Questions = Questions(
+                5,
+                "New Question:",
+                mutableListOf("AnswerOne", "AnswerTwo", "AnswerThree"),
+                "5 million",
+                "medium"
+            )
             geographyRound?.addQuestion(newQuestion)
             geographyRound?.questions?.contains(newQuestion)
 

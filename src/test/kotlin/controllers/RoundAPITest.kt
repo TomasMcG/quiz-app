@@ -86,14 +86,41 @@ class RoundAPITest {
 
 
         }
+
+        @Test
+        fun `listCompleted Rounds`() {
+            assertEquals(0, emptyRounds!!.numberOfRounds())
+            assertTrue(emptyRounds!!.listAllRounds().lowercase().contains("no rounds"))
+        }
+        @Test
+        fun `list incomplete Rounds`() {
+            assertEquals(4, populatedRounds!!.numberOfRounds())
+            val roundsString = populatedRounds!!.listIncompleteRounds().lowercase()
+            assertTrue(roundsString.contains("geography"))
+            assertTrue(roundsString.contains("history"))
+            assertTrue(roundsString.contains("television"))
+            assertTrue(roundsString.contains("video"))
+        }
     }
 
 @Nested
 inner class numberOfRounds{
     @Test
-    fun numberOfRoundsCorrect(){
+    fun numberOfRounds(){
         assertEquals(4, populatedRounds!!.numberOfRounds())
         assertEquals(0, emptyRounds!!.numberOfRounds())
+    }
+
+    @Test
+    fun numberOfRoundsCompleted(){
+        assertEquals(4, populatedRounds!!.numberOfRounds())
+        assertEquals(0, populatedRounds!!.numberOfCompletedRounds())
+    }
+
+    @Test
+    fun numberOfRoundsIncomplete(){
+        assertEquals(4, populatedRounds!!.numberOfIncompleteRounds())
+        assertEquals(0, emptyRounds!!.numberOfIncompleteRounds())
     }
 }
 
@@ -121,6 +148,17 @@ inner class numberOfRounds{
 
 
 
+        }
+
+        @Test
+        fun `setting a round to complete and incomplete`(){
+
+            assertTrue(geographyRound?.isCompleted == false)
+            populatedRounds!!.setRoundToComplete(geographyRound!!)
+            assertTrue(geographyRound?.isCompleted == true)
+
+            populatedRounds!!.setRoundToIncomplete(geographyRound!!)
+            assertTrue(geographyRound?.isCompleted == false)
         }
 
     }

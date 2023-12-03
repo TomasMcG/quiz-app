@@ -5,6 +5,7 @@ import mu.KotlinLogging
 import persistence.XMLSerializer
 
 import utils.ScannerInput
+import utils.Utilities.emptyArrayList
 import java.io.File
 import java.lang.System.exit
 
@@ -12,6 +13,7 @@ private val logger = KotlinLogging.logger {}
 private val roundAPI = RoundAPI(XMLSerializer(File("rounds.xml")))
 //private val questionAPI = Rounds(XMLSerializer(File("roundsQuestions.xml")))
 fun main(args: Array<String>) {
+    loadRound()
     runMenu()
 
 }
@@ -45,50 +47,15 @@ fun runMenu(){
 
 }
 
-fun tryQuiz(){println("Not added yet")}
-
-fun playerMenu(): Int {
-    return ScannerInput.readNextInt(""" 
-         > ----------------------------------
-         > |Player Menu(not functional yet)       
-         > ----------------------------------  
-         > |   1) Add a Player
-         > |   2) List all Players
-         > |   3) Update a Player
-         > |   4) Delete a Player
-         > ----------------------------------         
-         > |   0) Exit   
-         >    -1)Back to Main Menu               
-         > ----------------------------------
-         > ==>> """.trimMargin(">"))
-
-}
 
 
-
-fun runPlayerMenu(){
-    do{
-        val option = playerMenu()
-        when(option){
-            1 -> addPlayer()
-            2 -> listPlayers()
-            3 -> updatePlayer()
-            4 -> deletePlayer()
-
-            0 -> exitApp()
-            -1 -> println("Going back to main menu")
-            else -> println("Invalid option entered: ${option}")
-        }
-    }while(option != 0 && option != -1)
-
-}
 
 fun runRoundMenu(){
     do{
         val option = roundMenu()
         when(option){
             1 -> addRound()
-            2 -> println(roundAPI.listAllRounds())
+            2 -> listRounds()
             3 -> updateRound()
             4  -> deleteRound()
             5 -> addQuestionToRound()
@@ -136,59 +103,29 @@ fun roundMenu()
     }
 
 
-/*
-fun managePlayer(){
-    do{
-        val option = mainMenu()
-        when(option){
-            1 -> addPlayer()
-            2 -> listPlayers()
-            3 -> updatePlayer()
-            4 -> deletePlayer()
-            0 -> exitApp()
-            else -> println("Invalid option entered: ${option}")
-        }
-    }while(true)
-
-}
-do this later*/
-
-fun addPlayer(){
-    logger.info{"addPlayer() function invoked"}
-   /* var playerId = ScannerInput.readNextInt("Enter a title for the note: ")
-    var name = ScannerInput.readNextInt(Note(noteTitle,priority,category,false, LocalDate.now(),LocalDate.now(),noteContent,noteStatus))
-    //var rounds = ScannerInput.readNextInt List<Rounds>
-    var noAttempts = ScannerInput.readNextInt("enter number of attempts")
-    val isAdded = playerAPI.add(Player(playerId,name,rounds,noAttemps))
-
-    if (isAdded) {
-        println("Added Successfully")
-    } else {
-        println("Add Failed")
-    }*/
-
-    //add api and controllers back in.
-}
-
-
-fun listPlayers(){
-    logger.info{"listPlayers() function invoked"}
-}
-
-fun updatePlayer(){
-    logger.info{"updatePlayer() function invoked"}}
-
-fun deletePlayer(){
-    logger.info{"deletePlayer() function invoked"}
-}
 
 //-------------------------------------------------------------------
+//Questions functions
 private fun addQuestionToRound() {
     val round: Rounds? = askUserToChooseRound()
     if (round != null) {
-        if (round.addQuestion(Questions(1,
-                questionText = ScannerInput.readNextLine("\t Question and possible answers: "),
-                correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
+        var questionText = ScannerInput.readNextLine("\t Type the Question you want to ask: ")
+        var correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
+        var difficulty = ScannerInput.readNextLine("\t Select Difficulty(Easy,Medium,Hard): ")
+        var possibleAnswers = mutableListOf<String>()
+        var moreAnswers = 1
+        do{var newPossibleAnswers = ScannerInput.readNextLine("Enter a new possible answer")
+                possibleAnswers.add(newPossibleAnswers)
+            println("Possible answers so far")
+            possibleAnswers.forEach{println(it)}
+            moreAnswers = ScannerInput.readNextInt("""
+                Do you want to enter another possible value:
+                1.Yes 
+                2. No
+            """.trimIndent())
+        }
+            while(moreAnswers == 1)
+        if (round.addQuestion(Questions(1,questionText,possibleAnswers,correctAnswer,difficulty,
 
             )))
 
@@ -202,6 +139,19 @@ private fun askUserToChooseRound(): Rounds? {
     println(roundAPI.listAllRounds())
     if ( roundAPI.numberOfRounds() > 0) {
         val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to whose questions you want to deal with: "))
+        if (round != null) {
+            return round
+        } else {
+            println("Round id is not valid")
+        }
+    }
+    return null //selected note is not active
+}
+
+private fun askUserToChooseRoundByTitle(): Rounds? {
+    println(roundAPI.listAllRounds())
+    if ( roundAPI.numberOfRounds() > 0) {
+        val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to play: "))
         if (round != null) {
             return round
         } else {
@@ -263,12 +213,14 @@ fun updateQuestion(){
             var option: Int
             do{option = questionAttributeMenu(questionToEdit)
                 when(option){
-                    1 -> {var newQuestionText: String = ScannerInput.readNextLine("Please enter the new question text")
+                    1 -> {
+                        val newQuestionText: String = ScannerInput.readNextLine("Please enter the new question text")
                         round.updateQuestionText(questionToEdit,newQuestionText)}
-                    2 ->{ var newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
+                    2 ->{ val newCorrectAnswer: String = ScannerInput.readNextLine("Please enter the new correct answer")
                         round.updateQuestionCorrectAnswer(questionToEdit,newCorrectAnswer)}
-                    3 ->{ var newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
+                    3 ->{ val newQuestionId: Int = ScannerInput.readNextInt("Please enter the new question id")
                         round.updateQuestionId(questionToEdit,newQuestionId)}
+
                     99 -> updateQuestion()
                     100 -> updateRound()
                     0 -> println("exiting")
@@ -291,12 +243,12 @@ fun questionAttributeMenu(questionToEdit:Questions ):Int = ScannerInput.readNext
 )
 
 //------------------------------------------------------------------------------------
+//Round functions
 fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
     val roundTitle = ScannerInput.readNextLine("Enter a title for the round: ")
-    var questionsAttempted = ScannerInput.readNextInt("Enter the number of attempts: ")
-    val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle, questionsAttempted = questionsAttempted))
+    val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle))
 
     if (isAdded) {
         println("Added Successfully")
@@ -305,9 +257,29 @@ fun addRound(){
     }
 }
 
+fun listRounds() {
 
+    if (roundAPI.numberOfRounds() > 0) {
+        val option = ScannerInput.readNextInt(
+            """
+                  > --------------------------------
+                  > |   1) View ALL Rounds          
+                  > |   2) View Completed Rounds      
+                  > |   3) View Incomplete Rounds    
+                  > --------------------------------
+         > ==>> """.trimMargin(">")
+        )
 
-
+        when (option) {
+            1 -> println(roundAPI.listAllRounds())
+            2 ->  println(roundAPI.listCompletedRounds())
+            3 ->  println(roundAPI.listIncompleteRounds())
+            else -> println("Invalid option entered: $option")
+        }
+    } else {
+        println("Option Invalid - No notes stored")
+    }
+}
 
 fun updateRound() {
     logger.info { "updateRound() function invoked" }
@@ -322,13 +294,16 @@ fun updateRound() {
            var option: Int
                 do{option = roundAttributeMenu(roundToEdit)
                     when(option){
-                        1 -> {var newTitle: String = ScannerInput.readNextLine("Please enter the new title")
+                        1 -> {
+                            val newTitle: String = ScannerInput.readNextLine("Please enter the new title")
                             roundAPI.updateRoundTitle(roundToEdit,newTitle)}
-                        2 ->{ var newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
+                        2 ->{ val newRoundId: Int = ScannerInput.readNextInt("Please enter the new round id")
                             roundAPI.updateRoundId(roundToEdit,newRoundId)}
-                        3 -> { var newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
+                        3 -> { val newNoQuestionsAttempted: Int = ScannerInput.readNextInt("Please enter the new number of attempts")
                             roundAPI.updateQuestionsAttempted(roundToEdit,newNoQuestionsAttempted)}
-                        4 -> updateQuestion()
+                        4 -> setRoundCompletionStatus(roundToEdit)
+
+                        5 -> updateQuestion()
                         99 -> updateRound()
                         0 -> println("exiting")
 
@@ -347,10 +322,11 @@ fun updateRound() {
 fun roundAttributeMenu(roundToEdit:Rounds ):Int = ScannerInput.readNextInt(
     """
         Please Choose the attribute you would like to update
-        1.Title: ${roundToEdit.roundTitle}
+        1. Title: ${roundToEdit.roundTitle}
         2. RoundId: ${roundToEdit.roundId}
         3. Number of Attempts: ${roundToEdit.questionsAttempted}
-        4. Questions: ${roundToEdit.questions}
+        4. Round Completion Status: ${roundToEdit.isCompleted}
+        5. Questions: ${roundToEdit.questions}
         99. Choose a different Round to update
         0. Exit to main menu
     """.trimIndent()
@@ -392,6 +368,156 @@ fun loadRound() {
         System.err.println("Error reading from file: $e")
     }
 }
+
+fun setRoundCompletionStatus(roundToEdit: Rounds){
+    if (roundToEdit != null) {
+        // Display the current note details so you can decided what you want to change
+        if (roundToEdit.isCompleted == false) {
+            val choice = ScannerInput.readNextInt("""
+                The round is currently incomplete. Do you want to see it to completed?
+                1. yes
+                2. No""".trimIndent())
+            when(choice)
+            {
+                1 -> roundAPI.setRoundToComplete(roundToEdit)
+                2 -> println("The round status is incomplete")
+            }
+
+        }
+        else{
+            val choice = ScannerInput.readNextInt("""
+                The round is currently incomplete. Do you want to see it to Incompleted?
+                1. yes
+                2. No""".trimIndent())
+            when(choice)
+            {
+                1 -> roundAPI.setRoundToIncomplete(roundToEdit)
+                2 -> println("The round status is complete")
+            }
+
+        }
+
+    }
+}
+
+
+//---------------------------------------------------------
+//Quiz Interface Section
+fun tryQuiz() {
+
+    println(
+        """
+    Welcome to the quiz
+    --------------------------------------------------------------------------------------
+    Our quiz has multiple rounds based on different things such as History or Geography
+    To get started on the quiz please choose a round to try out
+    --------------------------------------------------------------------------------------
+""".trimIndent()
+    )
+    val chosenRound = askUserToChooseRoundByTitle()
+    if (chosenRound != null && chosenRound.questions.isNotEmpty() ) {
+        println(
+            """
+        You have chosen the ${chosenRound.roundTitle} Round
+    """.trimIndent()
+        )
+        chosenRound.questionsAttempted++
+        var numberOfCorrectAnswers = 0
+        val numberOfQuestions = chosenRound.numberOfQuestions()
+        //first display question 1,
+        var index: Int = 0
+        while (index < numberOfQuestions) {
+            println(chosenRound.questions[index]!!.questionText)
+            println(chosenRound.questions[index]!!.possibleAnswers)
+            val userAnswer: String = ScannerInput.readNextLine("Please Enter the Correct Answer")
+
+            if (userAnswer == chosenRound.questions[index]!!.correctAnswer) {
+                numberOfCorrectAnswers++
+            }
+            index++
+        }
+        println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
+        if(numberOfCorrectAnswers == numberOfQuestions){
+            chosenRound.isCompleted = true
+            println("Congratulations. You beat ${chosenRound.roundTitle} and got everything correct in ${chosenRound.questionsAttempted} attempts.")
+        }
+        println("Goodbye")
+
+    }else if(chosenRound == null){
+        println("That round does not exist")
+    }
+    else if( chosenRound.questions.isEmpty()
+
+    ){println("The chose round has no questions")}
+}
+
+//--------------------------------------------------------
+//PLAYER Section
+fun playerMenu(): Int {
+    return ScannerInput.readNextInt(""" 
+         > ----------------------------------
+         > |Player Menu(not functional yet)       
+         > ----------------------------------  
+         > |   1) Add a Player
+         > |   2) List all Players
+         > |   3) Update a Player
+         > |   4) Delete a Player
+         > ----------------------------------         
+         > |   0) Exit   
+         >    -1)Back to Main Menu               
+         > ----------------------------------
+         > ==>> """.trimMargin(">"))
+
+}
+
+
+
+fun runPlayerMenu(){
+    do{
+        val option = playerMenu()
+        when(option){
+            1 -> addPlayer()
+            2 -> listPlayers()
+            3 -> updatePlayer()
+            4 -> deletePlayer()
+
+            0 -> exitApp()
+            -1 -> println("Going back to main menu")
+            else -> println("Invalid option entered: ${option}")
+        }
+    }while(option != 0 && option != -1)
+
+}
+
+fun addPlayer(){
+    logger.info{"addPlayer() function invoked"}
+    /* var playerId = ScannerInput.readNextInt("Enter a title for the note: ")
+     var name = ScannerInput.readNextInt(Note(noteTitle,priority,category,false, LocalDate.now(),LocalDate.now(),noteContent,noteStatus))
+     //var rounds = ScannerInput.readNextInt List<Rounds>
+     var noAttempts = ScannerInput.readNextInt("enter number of attempts")
+     val isAdded = playerAPI.add(Player(playerId,name,rounds,noAttemps))
+
+     if (isAdded) {
+         println("Added Successfully")
+     } else {
+         println("Add Failed")
+     }*/
+
+    //add api and controllers back in.
+}
+
+
+fun listPlayers(){
+    logger.info{"listPlayers() function invoked"}
+}
+
+fun updatePlayer(){
+    logger.info{"updatePlayer() function invoked"}}
+
+fun deletePlayer(){
+    logger.info{"deletePlayer() function invoked"}
+}
+//----------------------------------------
 
 
 fun exitApp(){

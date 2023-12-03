@@ -17,15 +17,23 @@ class RoundAPI (serializerType: Serializer){
         return rounds.add(roundToAdd)
     }
 
-    fun addQuestionToRound(rounds: Rounds, question: Questions){
-        rounds.addQuestion(question)
-    }
     fun listAllRounds(): String =
         if (rounds.isEmpty())   //can remove curly braces for single line of code for if
             "No rounds stored"
         else
-            formatListString(rounds as ArrayList<Any>)
-    fun numberOfRounds(): Int { return rounds.size}
+            //formatListString(rounds as ArrayList<Any>)
+            rounds.toString()
+
+
+    /*fun listAllRoundsTitles(): String =
+        if (rounds.isEmpty())   //can remove curly braces for single line of code for if
+            "No rounds stored"
+        else
+        //formatListString(rounds as ArrayList<Any>)
+            rounds.roundTitleAndId()*/
+    fun numberOfRounds(): Int =  rounds.size
+    fun numberOfCompletedRounds(): Int =  rounds.count{rounds: Rounds  -> rounds.isCompleted}
+    fun numberOfIncompleteRounds(): Int =  rounds.count{rounds: Rounds  -> !rounds.isCompleted}
 
     fun deleteRound(idToDelete: Int): Rounds?{
             val roundToDelete = rounds.find {it.roundId == idToDelete}
@@ -53,6 +61,19 @@ class RoundAPI (serializerType: Serializer){
     fun updateQuestionsAttempted(roundToEdit: Rounds?, newNoQuestionsAttempted: Int){roundToEdit?.questionsAttempted = newNoQuestionsAttempted
     }
 
+  fun setRoundToComplete(roundToEdit: Rounds){
+      roundToEdit.isCompleted = true
+
+  }
+    fun setRoundToIncomplete(roundToEdit: Rounds){
+        roundToEdit.isCompleted = false
+    }
+
+    fun listCompletedRounds():String =
+        formatListString(rounds.filter{round -> round.isCompleted } as ArrayList<Any>)
+
+    fun listIncompleteRounds():String =
+        formatListString(rounds.filter{round -> !round.isCompleted } as ArrayList<Any>)
 
     @Throws(Exception::class)
     fun load() {

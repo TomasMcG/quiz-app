@@ -9,9 +9,20 @@ data class Rounds(
     var roundId: Int = 0,
     var roundTitle: String,
     var questionsAttempted: Int = 0,
-    var questions: ArrayList<Questions?> =emptyArrayList()
+    var questions: ArrayList<Questions?> =emptyArrayList(),
+    var isCompleted: Boolean = false
 
     ) {
+    override fun toString() =
+        if (isCompleted)
+            "\n $roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n"
+        else
+            "\n $roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n }"
+
+fun roundTitleAndId(){
+
+}
+
     //----------------------------------------------api function for questions objects below.
     //incrementer for question id
     private var lastQuestionId = 1
@@ -24,6 +35,7 @@ data class Rounds(
 
 
     fun numberOfQuestions() = questions.size
+
 
     fun findQuestion(id: Int): Questions? {
         return questions.find { question -> question?.questionId == id }
