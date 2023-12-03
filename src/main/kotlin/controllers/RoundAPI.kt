@@ -4,7 +4,6 @@ import models.Rounds
 import persistence.Serializer
 import utils.Utilities.formatListString
 
-
 /**
  * Class representing the API for managing Rounds.
  *
@@ -84,7 +83,6 @@ class RoundAPI(private var serializer: Serializer) {
             null
         }
     }
-
 
     /**
      * Finds and returns a round by its identifier.
@@ -167,7 +165,7 @@ class RoundAPI(private var serializer: Serializer) {
      */
     @Throws(Exception::class)
     fun load() {
-        //rounds = serializer.read() as ArrayList<Rounds>
+        // rounds = serializer.read() as ArrayList<Rounds>
         val loadedData = serializer.read()
 
         if (loadedData is ArrayList<*>) {

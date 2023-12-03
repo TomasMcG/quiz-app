@@ -93,7 +93,7 @@ data class Rounds(
         if (questions.isEmpty()) {
             "No questions stored"
         } else {
-            formatSetString(questions )
+            formatSetString(questions)
         }
 
     /**

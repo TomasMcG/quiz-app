@@ -56,9 +56,8 @@ fun mainMenu(): Int {
          > ----------------------------------
          > |         Main Menu        
          > ----------------------------------
-         > |   1) Run player Menu
-         > |   2) Run Round and Questions Menu                        
-         > |   3) Try the Quiz                         
+         > |   1) Run Round and Questions Menu                        
+         > |   2) Try the Quiz                         
          > ----------------------------------         
          > |   0) Exit                      
          > ----------------------------------
@@ -72,9 +71,8 @@ fun mainMenu(): Int {
 fun runMenu() {
     do {
         when (val option = mainMenu()) {
-            1 -> runPlayerMenu()
-            2 -> runRoundMenu()
-            3 -> tryQuiz()
+            1-> runRoundMenu()
+            2 -> tryQuiz()
             0 -> exitApp()
             else -> println("Invalid option entered: $option")
         }
@@ -560,86 +558,8 @@ fun tryQuiz() {
     }
 }
 
-/**
- * Displays the player menu and prompts the user to choose an option.
- *
- * @return The selected option.
- */
-fun playerMenu(): Int {
-    return ScannerInput.readNextInt(
-        """ 
-         > ----------------------------------
-         > |Player Menu (not functional yet)       
-         > ----------------------------------  
-         > |   1) Add a Player
-         > |   2) List all Players
-         > |   3) Update a Player
-         > |   4) Delete a Player
-         > ----------------------------------         
-         > |   0) Exit   
-         >    -1) Back to Main Menu               
-         > ----------------------------------
-         > ==>> """.trimMargin(">")
-    )
-}
 
-/**
- * Runs the player menu, allowing the user to perform various player-related operations.
- */
-fun runPlayerMenu() {
-    do {
-        val option = playerMenu()
-        when (option) {
-            1 -> addPlayer()
-            2 -> listPlayers()
-            3 -> updatePlayer()
-            4 -> deletePlayer()
-            0 -> exitApp()
-            -1 -> println("Going back to the main menu")
-            else -> println("Invalid option entered: $option")
-        }
-    } while (option != 0 && option != -1)
-}
 
-/**
- * Adds a player to the application.
- *
- * Not yet implemented; currently a placeholder.
- */
-fun addPlayer() {
-    logger.info { "addPlayer() function invoked" }
-    // Placeholder for adding a player. Add necessary logic and API calls.
-}
-
-/**
- * Lists all players in the application.
- *
- * Not yet implemented; currently a placeholder.
- */
-fun listPlayers() {
-    logger.info { "listPlayers() function invoked" }
-    // Placeholder for listing players. Add necessary logic and API calls.
-}
-
-/**
- * Updates a player's details.
- *
- * Not yet implemented; currently a placeholder.
- */
-fun updatePlayer() {
-    logger.info { "updatePlayer() function invoked" }
-    // Placeholder for updating a player. Add necessary logic and API calls.
-}
-
-/**
- * Deletes a player from the application.
- *
- * Not yet implemented; currently a placeholder.
- */
-fun deletePlayer() {
-    logger.info { "deletePlayer() function invoked" }
-    // Placeholder for deleting a player. Add necessary logic and API calls.
-}
 
 /**
  * Exits the application.

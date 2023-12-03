@@ -3,7 +3,6 @@ package utils
 import models.Questions
 import models.Rounds
 
-
 /**
  * A utility object that provides various utility functions for common tasks.
  */
@@ -25,7 +24,6 @@ object Utilities {
     }
 */
 
-
     /**
      * Formats a list of objects into a string representation.
      *
@@ -36,7 +34,6 @@ object Utilities {
     fun formatListString(objectsToFormat: ArrayList<Rounds>): String =
         objectsToFormat.joinToString(separator = "\n") { any -> "$any" }
 
-
     /**
      * Formats a list of items into a string representation with indentation.
      *
@@ -46,6 +43,4 @@ object Utilities {
     @JvmStatic
     fun formatSetString(itemsToFormat: ArrayList<Questions?>): String =
         itemsToFormat.joinToString(separator = "\n") { any -> "\t$any" }
-
-
 }
