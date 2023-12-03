@@ -50,7 +50,7 @@ jobs:
 
           # Builds a zip file with JUnit test report in it
           - name: Archive test report
-            uses: actions/uplpoad-artifact@v2
+            uses: actions/upload-artifact@v2
             with:
               name: Test report
               path: build/reports/tests/test
