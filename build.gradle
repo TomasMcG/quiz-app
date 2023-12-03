@@ -1,5 +1,7 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    // Plugin for Dokka - KDoc generating tool
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 group = 'is.setu'
@@ -21,6 +23,9 @@ dependencies {
     //yaml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.3")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+    // For generating a Dokka Site from KDoc
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.10")
 }
 
 test {
