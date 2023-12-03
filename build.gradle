@@ -10,8 +10,8 @@ plugins {
 }
 
 //group = 'is.setu'
-version gitVersion()
-gitVersion(prefix:'my-product@') // -> 2.15.0
+/*version gitVersion()
+gitVersion(prefix:'my-product@') // -> 2.15.0*/
 
 
 repositories {
