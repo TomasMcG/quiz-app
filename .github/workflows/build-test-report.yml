@@ -23,17 +23,17 @@ jobs:
       steps:
           - uses: actions/checkout@v2
 
-          - name: Set execute permission for gradlew
-            run: chmod +x gradlew
 
-          # runs a single command using the runners shell
+
+          # runs a gradle build task, but without runnign the Junit tests
           - name: Run the gradle build
             run: ./gradlew build
 
-          # runs a set of commands using the runners shell
-          - name: Run a multi-line script
-            run: |
-              echo Add other actions to build,
-              echo test, and deploy your project.
+          # build a "fat" jar file with the dependencies from gradle
+          - name: Archive Jar with Dependencies
+            uses: actions/upload-artifact@v2
+            with:
+              name:  Jar with Dependencies
+              path:  build/libs
         
       
