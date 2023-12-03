@@ -59,10 +59,17 @@ tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     from sourceSets.main.output
+    /*from 'src/main/resources'
+    from 'src/test/resources'*/
+
 
     dependsOn configurations.runtimeClasspath
 
     from {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
+    from("xmlFiles") {
+        include("rounds.xml")
+    }
+
 }

@@ -1,0 +1,65 @@
+<object-stream>
+  <list>
+    <models.Rounds>
+      <roundId>1</roundId>
+      <roundTitle>geographyRound</roundTitle>
+      <questionsAttempted>0</questionsAttempted>
+      <questions>
+        <models.Questions>
+          <questionId>1</questionId>
+          <questionText>Which of the following counties is coastal:</questionText>
+          <possibleAnswers>
+            <string>Waterford</string>
+            <string>Tipperary</string>
+            <string>Limerick</string>
+          </possibleAnswers>
+          <correctAnswer>Waterford</correctAnswer>
+          <difficulty>Easy</difficulty>
+        </models.Questions>
+        <models.Questions>
+          <questionId>2</questionId>
+          <questionText>What city is the capital of Ireland:</questionText>
+          <possibleAnswers>
+            <string>Dunblin City</string>
+            <string>Cork City</string>
+            <string>Waterford City</string>
+          </possibleAnswers>
+          <correctAnswer>Dublin City</correctAnswer>
+          <difficulty>Easy</difficulty>
+        </models.Questions>
+        <models.Questions>
+          <questionId>3</questionId>
+          <questionText>What county in Ireland has the smallest population: </questionText>
+          <possibleAnswers>
+            <string>Sligo</string>
+            <string>Leitrim</string>
+            <string>Roscommon</string>
+          </possibleAnswers>
+          <correctAnswer>Leitrim</correctAnswer>
+          <difficulty>Medium</difficulty>
+        </models.Questions>
+        <models.Questions>
+          <questionId>4</questionId>
+          <questionText>What is the population of Ireland(to the nearest million): </questionText>
+          <possibleAnswers>
+            <string>5 million</string>
+            <string>4 million</string>
+            <string>6 million</string>
+          </possibleAnswers>
+          <correctAnswer>5 million</correctAnswer>
+          <difficulty>Hard</difficulty>
+        </models.Questions>
+      </questions>
+      <isCompleted>false</isCompleted>
+      <lastQuestionId>5</lastQuestionId>
+    </models.Rounds>
+    <models.Rounds>
+      <roundId>2</roundId>
+      <roundTitle>televisionRound</roundTitle>
+      <questionsAttempted>0</questionsAttempted>
+      <questions/>
+      <isCompleted>false</isCompleted>
+      <lastQuestionId>1</lastQuestionId>
+    </models.Rounds>
+  </list>
+</object-stream>

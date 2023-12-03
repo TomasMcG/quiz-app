@@ -9,8 +9,17 @@ import utils.Utilities.emptyArrayList
 import java.io.File
 import java.lang.System.exit
 
+
 private val logger = KotlinLogging.logger {}
-private val roundAPI = RoundAPI(XMLSerializer(File("rounds.xml")))
+/*
+//this is where the xml file is location to be loaded and saved from is determined, instance of file object created.
+for xml files in resources.
+val resourceUrl = XMLSerializer::class.java.getResource("/rounds.xml")
+val file = File(resourceUrl.toURI())
+
+var roundAPI = RoundAPI(XMLSerializer(file))*/
+var roundAPI = RoundAPI(XMLSerializer(File("xmlFiles/rounds.xml")))
+
 //private val questionAPI = Rounds(XMLSerializer(File("roundsQuestions.xml")))
 /**
  * The main function to run the application.
