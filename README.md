@@ -9,12 +9,11 @@ By Tomás McGrath
 - This is our 3rd class assignment which we will work on over a number of weeks.
 - My project is a quiz app.
 - In the app you will be able to take a quiz.
-- Quizes are composed of rounds which are made up of Questions which you the Player answer.
+- Quizes are composed of rounds which are made up of Questions which you answer.
 - The current objects are:
-  -   Player(non functional)
   -   Rounds
   -   Questions
-- There is a main menu which you can use to edit rounds and questions, edit players(not yet functional) and try out the quiz
+- There is a main menu which you can use to edit rounds and questions and try out the quiz
 - You will be able to add , delete ,list and update objects using a menu.
 - You can choose specific object attributes to update
 - Currently there is CRUD functionality for Rounds objects and Questions object, you are also able to save and load them to XML.
@@ -22,6 +21,11 @@ By Tomás McGrath
 - A round is complete when you answer all its questions correctly in 1 attempt.
 - Each time you retry a round your attempt counter goes up
 - Possible answers are displayed to you during the quiz and you have to type in the correct answer
+- There is gradle tasks implemented for making a kdoc website
+- Gradle tasks for jacoco code coverage
+- Gradle tasks for jar with dependencies and xml files
+- Gradle tasks for linting and fixing warnings
+- Gradle task palantir for git version for jar file
   
 
 
