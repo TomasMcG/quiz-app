@@ -430,6 +430,7 @@ fun tryQuiz() {
             println(chosenRound.questions[index]!!.questionText)
             println(chosenRound.questions[index]!!.possibleAnswers)
             val userAnswer: String = ScannerInput.readNextLine("Please Enter the Correct Answer")
+
             if (userAnswer == chosenRound.questions[index]!!.correctAnswer) {
                 numberOfCorrectAnswers++
             }
@@ -438,7 +439,7 @@ fun tryQuiz() {
         println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
         if(numberOfCorrectAnswers == numberOfQuestions){
             chosenRound.isCompleted = true
-            println("Congratulations. You beat ${chosenRound} and got everything correct in ${chosenRound.questionsAttempted} attempts.")
+            println("Congratulations. You beat ${chosenRound.roundTitle} and got everything correct in ${chosenRound.questionsAttempted} attempts.")
         }
         println("Goodbye")
 
