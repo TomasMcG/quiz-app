@@ -52,15 +52,17 @@ fun main() {
  */
 fun mainMenu(): Int {
     return ScannerInput.readNextInt(
-        """> \----------------------------------
-        > |${"\u001B[32m"}         Main Menu  ${"\u001B[0m"}      
-        > ----------------------------------  
-        > | ${"\u001B[34m"} 1.Run Round and Questions Menu                        
-        > |  2.Try the Quiz       ${"\u001B[0m"}                  
-        > ----------------------------------         
-        > | ${"\u001B[31m"}  Exit      ${"\u001B[0m"}                  
-        > \----------------------------------
-        > ==>> """.trimMargin(">")
+        """ 
+         > ----------------------------------
+         > |         Main Menu        
+         > ----------------------------------
+         > |   1) Run player Menu
+         > |   2) Run Round and Questions Menu                        
+         > |   3) Try the Quiz                         
+         > ----------------------------------         
+         > |   0) Exit                      
+         > ----------------------------------
+         > ==>> """.trimMargin(">")
     )
 }
 
@@ -85,29 +87,30 @@ fun runMenu() {
  */
 fun roundMenu(): Int {
     return ScannerInput.readNextInt(
-        """ > ${"\u001B[32m"}----------------------------------
-        > |Round and Questions CRUD Menu         
-        > ----------------------------------  ${"\u001B[0m"}
-        >  ${"\u001B[34m"} Round Menu
-        > |  1.Add a Round                
-        > |  2.List all Rounds            
-        > |  3.Update a Round             
-        > |  4.Delete a Round      ${"\u001B[0m"}
-        > \----------------------------------
-        > |${"\u001B[36m"} Questions MENU                      
-        > |5.Add a Question                
-        > | 6.List all Questions            
-        > |  7.Update a Question             
-        > |  8.Delete a Question     ${"\u001B[0m"}        
-        > ----------------------------------
-        > | Save and Load Menu
-        > | 9.Save Rounds
-        > |  10.Load Rounds
-        > ----------------------------------         
-        > | ${"\u001B[31m"} 0.Exit   
-        >    -1.Back to Main Menu         ${"\u001B[0m"}       
-        > \----------------------------------
-        > ==>> """.trimMargin(">")
+        """ 
+         > ----------------------------------
+         > |Round and Questions CRUD Menu         
+         > ----------------------------------  
+         >   Round Menu
+         > |   1) Add a Round                
+         > |   2) List all Rounds            
+         > |   3) Update a Round             
+         > |   4) Delete a Round      
+         > ----------------------------------
+         > | Questions MENU                      
+         > |   5) Add a Question                
+         > |   6) List all Questions            
+         > |   7) Update a Question             
+         > |   8) Delete a Question             
+         > ----------------------------------
+         > | Save and Load Menu
+         > |   9) Save Rounds
+         > |   10) Load Rounds
+         > ----------------------------------         
+         > |   0) Exit   
+         >    -1)Back to Main Menu               
+         > ----------------------------------
+         > ==>> """.trimMargin(">")
     )
 }
 
@@ -264,24 +267,12 @@ fun listQuestions() {
     val round = askUserToChooseRound()
     if (round != null) {
         val questions: ArrayList<Questions?> = round.questions
-
         if (questions.isNotEmpty()) {
-            val option = ScannerInput.readNextInt(
-                """
-                  > --------------------------------
-                  > |   1) List All Questions          
-                  > --------------------------------
-                  > ==>> """.trimMargin(">")
-            )
-
-            when (option) {
-                1 -> println(listQuestions())
-
-                else -> println("Invalid option entered: $option")
-            }
+            println(round.listAllQuestions())
         }
     }
 }
+
 
 /**
  * Updates a selected question associated with a selected round.
