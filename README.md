@@ -11,12 +11,17 @@ By Tomás McGrath
 - In the app you will be able to take a quiz.
 - Quizes are composed of rounds which are made up of Questions which you the Player answer.
 - The current objects are:
-  -   Player
+  -   Player(non functional)
   -   Rounds
   -   Questions
-- There is a main menu which you can use to edit rounds and questions, edit players(not yet functional) and try out the quiz(not yet functional)
+- There is a main menu which you can use to edit rounds and questions, edit players(not yet functional) and try out the quiz
 - You will be able to add , delete ,list and update objects using a menu.
 - You can choose specific object attributes to update
 - Currently there is CRUD functionality for Rounds objects and Questions object, you are also able to save and load them to XML.
+- When you try the quiz you first are displayed the rounds which are complete or incomplete.
+- A round is complete when you answer all its questions correctly in 1 attempt.
+- Each time you retry a round your attempt counter goes up
+- Possible answers are displayed to you during the quiz and you have to type in the correct answer
+  
 
 
