@@ -8,6 +8,7 @@ import kotlin.Throws
 import java.lang.Exception
 import java.io.FileReader
 import java.io.FileWriter
+import java.io.InputStream
 
 /**
  * A serializer implementation that uses XML for object serialization and deserialization.
@@ -18,7 +19,7 @@ import java.io.FileWriter
  *
  * @param file The file to read from or write to during serialization and deserialization.
  */
-class XMLSerializer(private val file: File) : Serializer {
+class XMLSerializer(private val file: File?) : Serializer {
     /**
      * Read an object from the XML file and return it.
      *

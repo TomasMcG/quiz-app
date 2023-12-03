@@ -56,20 +56,26 @@ tasks.jar {
     manifest {
         attributes 'Main-Class': 'MainKt'
     }
+
+
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
+    // Get the absolute path to the "xmlFiles" directory
+    def xmlFilesDir = file("src/main/resources")
+
+    from(xmlFilesDir) {
+        include("rounds.xml")
+        eachFile { println "Included: $it" }
+    }
+
     from sourceSets.main.output
-    /*from 'src/main/resources'
-    from 'src/test/resources'*/
+
 
 
     dependsOn configurations.runtimeClasspath
 
     from {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-    }
-    from("xmlFiles") {
-        include("rounds.xml")
     }
 
 }
