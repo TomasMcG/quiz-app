@@ -9,7 +9,7 @@ plugins {
     id "com.palantir.git-version" version "1.0.0"
 }
 
-group = 'is.setu'
+//group = 'is.setu'
 version gitVersion()
 gitVersion(prefix:'my-product@') // -> 2.15.0
 
