@@ -49,3 +49,20 @@ compileTestKotlin {
 application {
     mainClass.set("MainKt")
 }
+
+
+    //for building a far jar - include all dependencies
+tasks.jar {
+    manifest {
+        attributes 'Main-Class': 'MainKt'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}
