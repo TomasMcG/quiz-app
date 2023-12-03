@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test
 import persistence.XMLSerializer
 import java.io.File
 
+/**
+ * Test class for [RoundAPI] functionalities.
+ */
 class RoundAPITest {
 
     private var geographyRound: Rounds? = null

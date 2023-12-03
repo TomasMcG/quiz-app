@@ -7,6 +7,9 @@ import utils.Utilities.emptyArrayList
 import java.io.File
 import kotlin.test.assertEquals
 
+/**
+ * Test class for [RoundsQuestionsAPI] functionalities.
+ */
 class RoundsQuestionsAPITest {
     //singulgar Questions
     //array list of those questions object is geographyQuestionss
