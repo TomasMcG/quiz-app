@@ -1,5 +1,4 @@
 package models
-
 import utils.Utilities.formatSetString
 
 /**
@@ -125,5 +124,4 @@ data class Rounds(
     fun updateQuestionCorrectAnswer(questionToEdit: Questions?, newQuestionCorrectAnswer: String) {
         questionToEdit?.correctAnswer = newQuestionCorrectAnswer
     }
-
 }
