@@ -56,9 +56,8 @@ fun mainMenu(): Int {
          > ----------------------------------
          > |         Main Menu        
          > ----------------------------------
-         > |   1) Run player Menu
-         > |   2) Run Round and Questions Menu                        
-         > |   3) Try the Quiz                         
+         > |   1) Run Round and Questions Menu                        
+         > |   2) Try the Quiz                         
          > ----------------------------------         
          > |   0) Exit                      
          > ----------------------------------
@@ -273,7 +272,6 @@ fun listQuestions() {
     }
 }
 
-
 /**
  * Updates a selected question associated with a selected round.
  *
@@ -362,10 +360,7 @@ fun listRounds() {
                   > --------------------------------
                   > |   1) View ALL Rounds          
                   > |   2) View Completed Rounds      
-                  > |   3) View Incomplete Rounds 
-                  >     4) View Easy Rounds
-                  >     5) View Medium Rounds
-                  >     6) View Hard Rounds
+                  > |   3) View Incomplete Rounds    
                   > --------------------------------
          > ==>> """.trimMargin(">")
         )
