@@ -1,6 +1,5 @@
 package models
 import controllers.RoundAPI
-import mu.KotlinLogging
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
@@ -11,16 +10,14 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/**
- * Test class for [RoundsQuestionsAPI] functionalities.
- */
+
 class RoundsQuestionsAPITest {
     // singulgar Questions
     // array list of those questions object is geographyQuestionss
 // geography round is my populated list that stores my arrays of Questions
     // run the Questions tests on the grography rounds array list or on it as an attribute of geography round
 
-    private val logger = KotlinLogging.logger {}
+
 
     // questions objects
     private var geographyQuestion1: Questions? = null
@@ -29,7 +26,7 @@ class RoundsQuestionsAPITest {
     private var geographyQuestion4: Questions? = null
 
     // Arraylists of questions objects
-    private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1, geographyQuestion2, geographyQuestion3, geographyQuestion4)
+    //private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1, geographyQuestion2, geographyQuestion3, geographyQuestion4)
 
     // individual round objects
     private var geographyRound: Rounds? = null
@@ -72,7 +69,7 @@ class RoundsQuestionsAPITest {
             "5 million",
             "easy"
         )
-        var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1, geographyQuestion2, geographyQuestion3, geographyQuestion4)
+        val geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1, geographyQuestion2, geographyQuestion3, geographyQuestion4)
         geographyRound = Rounds(1, "geographyRound", 4, geographyQuestions)
         emptyQuestionsRound = Rounds(2, "emptyQuestionsRound,4")
         populatedRounds!!.add(geographyRound!!)
@@ -95,7 +92,7 @@ class RoundsQuestionsAPITest {
         @Test
         fun `Add questions to a round`() {
             assertEquals(4, geographyRound?.numberOfQuestions())
-            var newQuestion: Questions = Questions(
+            val newQuestion = Questions(
                 5,
                 "New Question:",
                 mutableListOf("AnswerOne", "AnswerTwo", "AnswerThree"),
@@ -148,7 +145,7 @@ class RoundsQuestionsAPITest {
     }
 
     @Nested
-    inner class updateQuestions {
+    inner class UpdateQuestions {
         @Test
         fun `updating a question that exists returns true and updates`() {
             // update question text

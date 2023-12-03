@@ -91,10 +91,10 @@ class RoundAPI(serializerType: Serializer) {
      * @param roundId The round identifier to check.
      * @return `true` if the round identifier is valid, `false` otherwise.
      */
-    fun isValidIndex(roundId: Int): Boolean {
+    /*fun isValidIndex(roundId: Int): Boolean {
         val validRoundIds = rounds.map { it.roundId }
         return roundId in validRoundIds
-    }
+    }*/
 
     /**
      * Finds and returns a round by its identifier.
