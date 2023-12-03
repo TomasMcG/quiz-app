@@ -10,14 +10,11 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-
 class RoundsQuestionsAPITest {
     // singulgar Questions
     // array list of those questions object is geographyQuestionss
 // geography round is my populated list that stores my arrays of Questions
     // run the Questions tests on the grography rounds array list or on it as an attribute of geography round
-
-
 
     // questions objects
     private var geographyQuestion1: Questions? = null
@@ -26,7 +23,7 @@ class RoundsQuestionsAPITest {
     private var geographyQuestion4: Questions? = null
 
     // Arraylists of questions objects
-    //private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1, geographyQuestion2, geographyQuestion3, geographyQuestion4)
+    // private var geographyQuestions: ArrayList<Questions?> = arrayListOf(geographyQuestion1, geographyQuestion2, geographyQuestion3, geographyQuestion4)
 
     // individual round objects
     private var geographyRound: Rounds? = null

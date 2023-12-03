@@ -5,7 +5,7 @@ import mu.KotlinLogging
 import persistence.XMLSerializer
 import utils.ScannerInput
 import java.io.File
-import java.lang.System.exit
+import kotlin.system.exitProcess
 
 private val logger = KotlinLogging.logger {}
 private val roundAPI = RoundAPI(XMLSerializer(copyResourceToFile("rounds.xml")))
@@ -38,9 +38,9 @@ fun copyResourceToFile(fileName: String): File {
  *
  * This function initializes the necessary components, loads rounds, and starts the main menu.
  *
- * @param args Command-line arguments (not used in this application).
+ *
  */
-fun main(args: Array<String>) {
+fun main() {
     loadRound()
     runMenu()
 }
@@ -71,8 +71,7 @@ fun mainMenu(): Int {
  */
 fun runMenu() {
     do {
-        val option = mainMenu()
-        when (option) {
+        when (val option = mainMenu()) {
             1 -> runPlayerMenu()
             2 -> runRoundMenu()
             3 -> tryQuiz()
@@ -151,13 +150,13 @@ fun runRoundMenu() {
 private fun addQuestionToRound() {
     val round: Rounds? = askUserToChooseRound()
     if (round != null) {
-        var questionText = ScannerInput.readNextLine("\t Type the Question you want to ask: ")
-        var correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
-        var difficulty = ScannerInput.readNextLine("\t Select Difficulty (Easy, Medium, Hard): ")
-        var possibleAnswers = mutableListOf<String>()
-        var moreAnswers = 1
+        val questionText = ScannerInput.readNextLine("\t Type the Question you want to ask: ")
+        val correctAnswer = ScannerInput.readNextLine("\t Correct Answer: ")
+        val difficulty = ScannerInput.readNextLine("\t Select Difficulty (Easy, Medium, Hard): ")
+        val possibleAnswers = mutableListOf<String>()
+        var moreAnswers: Int
         do {
-            var newPossibleAnswer = ScannerInput.readNextLine("Enter a new possible answer")
+            val newPossibleAnswer = ScannerInput.readNextLine("Enter a new possible answer")
             possibleAnswers.add(newPossibleAnswer)
             println("Possible answers so far")
             possibleAnswers.forEach { println(it) }
@@ -250,12 +249,12 @@ fun deleteQuestion() {
  * @return The selected question or null if no valid question is chosen.
  */
 private fun askUserToChooseQuestion(round: Rounds): Questions? {
-    if (round.numberOfQuestions() > 0) {
+    return if (round.numberOfQuestions() > 0) {
         print(round.listAllQuestions())
-        return round.findQuestion(ScannerInput.readNextInt("\nEnter the id of the Question to deal with: "))
+        round.findQuestion(ScannerInput.readNextInt("\nEnter the id of the Question to deal with: "))
     } else {
         println("No questions for chosen Round")
-        return null
+        null
     }
 }
 
@@ -385,7 +384,7 @@ fun listRounds() {
  * Displays a menu for choosing the round attribute to update, such as title, roundId, number of attempts, completion status,
  * and questions. Invokes the corresponding `update` function in `RoundAPI` based on the user's choice.
  *
- * @param roundToEdit The round being edited.
+ *
  */
 fun updateRound() {
     logger.info { "updateRound() function invoked" }
@@ -495,19 +494,17 @@ fun loadRound() {
  * @param roundToEdit The round being edited.
  */
 fun setRoundCompletionStatus(roundToEdit: Rounds) {
-    if (roundToEdit != null) {
-        val completionStatusMessage = if (roundToEdit.isCompleted) "incomplete" else "complete"
-        val choice = ScannerInput.readNextInt(
-            """
-                The round is currently $completionStatusMessage. Do you want to set it to ${if (roundToEdit.isCompleted) "incomplete" else "complete"}?
-                1. Yes
-                2. No
-            """.trimIndent()
-        )
-        when (choice) {
-            1 -> if (roundToEdit.isCompleted) roundAPI.setRoundToIncomplete(roundToEdit)
-            2 -> println("The round status is $completionStatusMessage")
-        }
+    val completionStatusMessage = if (roundToEdit.isCompleted) "incomplete" else "complete"
+    val choice = ScannerInput.readNextInt(
+        """
+            The round is currently $completionStatusMessage. Do you want to set it to ${if (roundToEdit.isCompleted) "incomplete" else "complete"}?
+            1. Yes
+            2. No
+        """.trimIndent()
+    )
+    when (choice) {
+        1 -> if (roundToEdit.isCompleted) roundAPI.setRoundToIncomplete(roundToEdit)
+        2 -> println("The round status is $completionStatusMessage")
     }
 }
 
@@ -539,7 +536,7 @@ fun tryQuiz() {
         var numberOfCorrectAnswers = 0
         val numberOfQuestions = chosenRound.numberOfQuestions()
         // first display question 1,
-        var index: Int = 0
+        var index = 0
         while (index < numberOfQuestions) {
             println(chosenRound.questions[index]!!.questionText)
             println(chosenRound.questions[index]!!.possibleAnswers)
@@ -649,5 +646,5 @@ fun deletePlayer() {
  */
 fun exitApp() {
     println("Exiting...bye")
-    exit(0)
+    exitProcess(0)
 }

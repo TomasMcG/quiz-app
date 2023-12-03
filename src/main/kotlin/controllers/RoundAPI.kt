@@ -10,11 +10,10 @@ import utils.Utilities.formatListString
  * This class provides methods to manipulate Rounds, including adding, deleting, updating, and listing rounds.
  * It also supports loading and storing rounds using a provided serializer.
  *
- * @property serializerType The type of serializer to use for reading and writing rounds.
+ * @property serializer The type of serializer to use for reading and writing rounds.
  */
-class RoundAPI(serializerType: Serializer) {
+class RoundAPI(private var serializer: Serializer) {
 
-    private var serializer: Serializer = serializerType
     private var rounds = ArrayList<Rounds>()
     private var lastId = 1
 
@@ -85,16 +84,6 @@ class RoundAPI(serializerType: Serializer) {
         }
     }
 
-    /**
-     * Checks if a given round identifier is valid.
-     *
-     * @param roundId The round identifier to check.
-     * @return `true` if the round identifier is valid, `false` otherwise.
-     */
-    /*fun isValidIndex(roundId: Int): Boolean {
-        val validRoundIds = rounds.map { it.roundId }
-        return roundId in validRoundIds
-    }*/
 
     /**
      * Finds and returns a round by its identifier.
