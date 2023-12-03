@@ -52,8 +52,7 @@ fun main() {
  */
 fun mainMenu(): Int {
     return ScannerInput.readNextInt(
-        """
-        > \----------------------------------
+        """> \----------------------------------
         > |${"\u001B[32m"}         Main Menu  ${"\u001B[0m"}      
         > ----------------------------------  
         > | ${"\u001B[34m"} 1.Run Round and Questions Menu                        
@@ -86,8 +85,7 @@ fun runMenu() {
  */
 fun roundMenu(): Int {
     return ScannerInput.readNextInt(
-        """
-        > ${"\u001B[32m"}----------------------------------
+        """ > ${"\u001B[32m"}----------------------------------
         > |Round and Questions CRUD Menu         
         > ----------------------------------  ${"\u001B[0m"}
         >  ${"\u001B[34m"} Round Menu
@@ -268,7 +266,6 @@ fun listQuestions() {
         val questions: ArrayList<Questions?> = round.questions
 
         if (questions.isNotEmpty()) {
-
             val option = ScannerInput.readNextInt(
                 """
                   > --------------------------------
