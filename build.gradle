@@ -1,13 +1,24 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    // Plugin for Dokka - KDoc generating tool
+    id("org.jetbrains.dokka") version "1.9.10"
+    id 'application'
+    id 'jacoco'
+    // Plugin for Ktlint
+    id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
+    id "com.palantir.git-version" version "1.0.0"
 }
 
-group = 'is.setu'
-version = '1.0-SNAPSHOT'
+//group = 'is.setu'
+version gitVersion()
+gitVersion(prefix:'my-product@') // -> 2.15.0
+
 
 repositories {
     mavenCentral()
 }
+
+
 
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
@@ -21,11 +32,18 @@ dependencies {
     //yaml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.3")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+    // For generating a Dokka Site from KDoc
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.10")
 }
 
 test {
     useJUnitPlatform()
+    //report is always generated after tests run
+    finalizedBy jacocoTestReport
 }
+
+
 
 compileKotlin {
     kotlinOptions.jvmTarget = '1.8'
@@ -33,4 +51,38 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = '1.8'
+}
+
+application {
+    mainClass.set("MainKt")
+}
+
+
+    //for building a far jar - include all dependencies
+tasks.jar {
+    manifest {
+        attributes 'Main-Class': 'MainKt'
+    }
+
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    // Get the absolute path to the "xmlFiles" directory
+    def xmlFilesDir = file("src/main/resources")
+
+    from(xmlFilesDir) {
+        include("rounds.xml")
+        eachFile { println "Included: $it" }
+    }
+
+    from sourceSets.main.output
+
+
+
+    dependsOn configurations.runtimeClasspath
+
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
 }
