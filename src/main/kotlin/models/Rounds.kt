@@ -1,6 +1,6 @@
 package models
 
-import utils.Utilities.formatListString
+import utils.Utilities.formatSetString
 
 /**
  * Data class representing a Round.
@@ -93,7 +93,7 @@ data class Rounds(
         if (questions.isEmpty()) {
             "No questions stored"
         } else {
-            formatListString(questions as ArrayList<Any>)
+            formatSetString(questions )
         }
 
     /**

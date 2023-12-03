@@ -4,6 +4,7 @@ import models.Rounds
 import persistence.Serializer
 import utils.Utilities.formatListString
 
+
 /**
  * Class representing the API for managing Rounds.
  *
@@ -149,7 +150,7 @@ class RoundAPI(private var serializer: Serializer) {
      * @return A string containing the details of all completed rounds.
      */
     fun listCompletedRounds(): String =
-        formatListString(rounds.filter { round -> round.isCompleted } as ArrayList<Any>)
+        formatListString(rounds.filter { round -> round.isCompleted } as ArrayList<Rounds>)
 
     /**
      * Returns a string representation of all incomplete rounds.
@@ -157,7 +158,7 @@ class RoundAPI(private var serializer: Serializer) {
      * @return A string containing the details of all incomplete rounds.
      */
     fun listIncompleteRounds(): String =
-        formatListString(rounds.filter { round -> !round.isCompleted } as ArrayList<Any>)
+        formatListString(rounds.filter { round -> !round.isCompleted } as ArrayList<Rounds>)
 
     /**
      * Loads rounds from the serializer.
@@ -166,7 +167,16 @@ class RoundAPI(private var serializer: Serializer) {
      */
     @Throws(Exception::class)
     fun load() {
-        rounds = serializer.read() as ArrayList<Rounds>
+        //rounds = serializer.read() as ArrayList<Rounds>
+        val loadedData = serializer.read()
+
+        if (loadedData is ArrayList<*>) {
+            // The loaded data is an ArrayList, but the type parameter is unknown at compile time
+            @Suppress("UNCHECKED_CAST")
+            rounds = loadedData as ArrayList<Rounds>
+        } else {
+            throw Exception("Unexpected type after deserialization")
+        }
     }
 
     /**
