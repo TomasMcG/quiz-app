@@ -158,6 +158,8 @@ class RoundAPI(private var serializer: Serializer) {
     fun listIncompleteRounds(): String =
         formatListString(rounds.filter { round -> !round.isCompleted } as ArrayList<Rounds>)
 
+
+
     /**
      * Loads rounds from the serializer.
      *
