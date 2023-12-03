@@ -15,11 +15,13 @@ data class Rounds(
     ) {
     override fun toString() =
         if (isCompleted)
-            "$roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n questions: \n             ${questions.toString()}"
+            "\n $roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n"
         else
-            "$roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n questions: \n             ${questions.toString()}"
+            "\n $roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n }"
 
+fun roundTitleAndId(){
 
+}
 
     //----------------------------------------------api function for questions objects below.
     //incrementer for question id

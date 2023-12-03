@@ -23,6 +23,14 @@ class RoundAPI (serializerType: Serializer){
         else
             //formatListString(rounds as ArrayList<Any>)
             rounds.toString()
+
+
+    /*fun listAllRoundsTitles(): String =
+        if (rounds.isEmpty())   //can remove curly braces for single line of code for if
+            "No rounds stored"
+        else
+        //formatListString(rounds as ArrayList<Any>)
+            rounds.roundTitleAndId()*/
     fun numberOfRounds(): Int =  rounds.size
     fun numberOfCompletedRounds(): Int =  rounds.count{rounds: Rounds  -> rounds.isCompleted}
     fun numberOfIncompleteRounds(): Int =  rounds.count{rounds: Rounds  -> !rounds.isCompleted}

@@ -149,7 +149,7 @@ private fun askUserToChooseRound(): Rounds? {
 }
 
 private fun askUserToChooseRoundByTitle(): Rounds? {
-    println(roundAPI.listAllRoundsTitles())
+    println(roundAPI.listAllRounds())
     if ( roundAPI.numberOfRounds() > 0) {
         val round = roundAPI.findRounds(ScannerInput.readNextInt("\nEnter the id of the round you want to play: "))
         if (round != null) {
@@ -248,8 +248,7 @@ fun addRound(){
     logger.info{"addRound() function invoked"}
     //these info functions are lambdas
     val roundTitle = ScannerInput.readNextLine("Enter a title for the round: ")
-    val questionsAttempted = ScannerInput.readNextInt("Enter the number of attempts: ")
-    val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle, questionsAttempted = questionsAttempted))
+    val isAdded = roundAPI.add(Rounds(roundTitle = roundTitle))
 
     if (isAdded) {
         println("Added Successfully")
@@ -409,8 +408,10 @@ fun tryQuiz() {
     println(
         """
     Welcome to the quiz
+    --------------------------------------------------------------------------------------
     Our quiz has multiple rounds based on different things such as History or Geography
     To get started on the quiz please choose a round to try out
+    --------------------------------------------------------------------------------------
 """.trimIndent()
     )
     val chosenRound = askUserToChooseRoundByTitle()
@@ -420,6 +421,7 @@ fun tryQuiz() {
         You have chosen the ${chosenRound.roundTitle} Round
     """.trimIndent()
         )
+        chosenRound.questionsAttempted++
         var numberOfCorrectAnswers = 0
         val numberOfQuestions = chosenRound.numberOfQuestions()
         //first display question 1,
@@ -434,6 +436,10 @@ fun tryQuiz() {
             index++
         }
         println("Congratulation. You finished the quiz. You got ${numberOfCorrectAnswers} correct answers and ${numberOfQuestions - numberOfCorrectAnswers} wrong answers")
+        if(numberOfCorrectAnswers == numberOfQuestions){
+            chosenRound.isCompleted = true
+            println("Congratulations. You beat ${chosenRound} and got everything correct in ${chosenRound.questionsAttempted} attempts.")
+        }
         println("Goodbye")
 
     }else if(chosenRound == null){
