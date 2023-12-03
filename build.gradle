@@ -2,6 +2,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.0'
     // Plugin for Dokka - KDoc generating tool
     id("org.jetbrains.dokka") version "1.9.10"
+    id 'application'
+    id 'jacoco'
 }
 
 group = 'is.setu'
@@ -30,7 +32,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    //report is always generated after tests run
+    finalizedBy jacocoTestReport
 }
+
+
 
 compileKotlin {
     kotlinOptions.jvmTarget = '1.8'
