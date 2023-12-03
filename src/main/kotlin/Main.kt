@@ -71,7 +71,7 @@ fun mainMenu(): Int {
 fun runMenu() {
     do {
         when (val option = mainMenu()) {
-            1-> runRoundMenu()
+            1 -> runRoundMenu()
             2 -> tryQuiz()
             0 -> exitApp()
             else -> println("Invalid option entered: $option")
@@ -557,9 +557,6 @@ fun tryQuiz() {
         println("The chosen round has no questions")
     }
 }
-
-
-
 
 /**
  * Exits the application.
