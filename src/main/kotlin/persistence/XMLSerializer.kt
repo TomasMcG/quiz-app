@@ -2,13 +2,11 @@ package persistence
 
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.xml.DomDriver
-import models.Rounds
 import java.io.File
-import kotlin.Throws
-import java.lang.Exception
 import java.io.FileReader
 import java.io.FileWriter
-import java.io.InputStream
+import java.lang.Exception
+import kotlin.Throws
 
 /**
  * A serializer implementation that uses XML for object serialization and deserialization.

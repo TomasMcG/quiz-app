@@ -1,12 +1,8 @@
 package controllers
 
-import models.Questions
 import models.Rounds
 import persistence.Serializer
 import utils.Utilities.formatListString
-import utils.Utilities.formatSetString
-
-
 
 /**
  * Class representing the API for managing Rounds.
@@ -16,7 +12,7 @@ import utils.Utilities.formatSetString
  *
  * @property serializerType The type of serializer to use for reading and writing rounds.
  */
-class RoundAPI (serializerType: Serializer) {
+class RoundAPI(serializerType: Serializer) {
 
     private var serializer: Serializer = serializerType
     private var rounds = ArrayList<Rounds>()
@@ -46,31 +42,32 @@ class RoundAPI (serializerType: Serializer) {
      * @return A string containing the details of all stored rounds.
      */
     fun listAllRounds(): String =
-        if (rounds.isEmpty())
+        if (rounds.isEmpty()) {
             "No rounds stored"
-        else
+        } else {
             rounds.toString()
+        }
 
     /**
      * Returns the number of rounds stored.
      *
      * @return The number of rounds stored.
      */
-    fun numberOfRounds(): Int =  rounds.size
+    fun numberOfRounds(): Int = rounds.size
 
     /**
      * Returns the number of completed rounds.
      *
      * @return The number of completed rounds.
      */
-    fun numberOfCompletedRounds(): Int =  rounds.count { round: Rounds -> round.isCompleted }
+    fun numberOfCompletedRounds(): Int = rounds.count { round: Rounds -> round.isCompleted }
 
     /**
      * Returns the number of incomplete rounds.
      *
      * @return The number of incomplete rounds.
      */
-    fun numberOfIncompleteRounds(): Int =  rounds.count { round: Rounds -> !round.isCompleted }
+    fun numberOfIncompleteRounds(): Int = rounds.count { round: Rounds -> !round.isCompleted }
 
     /**
      * Deletes a round by its identifier.
@@ -83,7 +80,9 @@ class RoundAPI (serializerType: Serializer) {
         return if (roundToDelete != null) {
             rounds.remove(roundToDelete)
             roundToDelete
-        } else null
+        } else {
+            null
+        }
     }
 
     /**

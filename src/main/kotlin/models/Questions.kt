@@ -34,6 +34,6 @@ data class Questions(
             possible answers: $possibleAnswersString
             correct answer: $correctAnswer
             
-            """.trimIndent()
+        """.trimIndent()
     }
 }

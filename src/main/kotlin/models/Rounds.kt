@@ -1,8 +1,5 @@
 package models
 
-
-import persistence.Serializer
-import utils.Utilities.emptyArrayList
 import utils.Utilities.formatListString
 
 /**
@@ -31,10 +28,11 @@ data class Rounds(
      * @return A formatted string containing details of the round.
      */
     override fun toString() =
-        if (isCompleted)
+        if (isCompleted) {
             "\n $roundId: $roundTitle (Completed) \n Number of Attempts: $questionsAttempted \n"
-        else
+        } else {
             "\n $roundId: $roundTitle (Incomplete) \n Number of Attempts: $questionsAttempted \n }"
+        }
 
     // ---------------------------------------------- API functions for Questions objects below.
 
@@ -92,10 +90,11 @@ data class Rounds(
      * @return A string containing the details of all questions associated with the round.
      */
     fun listAllQuestions(): String =
-        if (questions.isEmpty())
+        if (questions.isEmpty()) {
             "No questions stored"
-        else
+        } else {
             formatListString(questions as ArrayList<Any>)
+        }
 
     /**
      * Updates the identifier of a question.

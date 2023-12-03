@@ -1,13 +1,12 @@
 package persistence
 
-
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
 
-//we use the abstract interface seralizer, need a read and write
+// we use the abstract interface seralizer, need a read and write
 /**
  * JSONSerializer is a class that implements the Serializer interface and is used for
  * reading and writing data in JSON format. It uses the XStream library with the JettisonMappedXmlDriver
@@ -15,7 +14,7 @@ import java.io.FileWriter
  *
  * @param file The file to read from or write to.
  */
-class JSONSerializer (private val file: File):Serializer {
+class JSONSerializer(private val file: File) : Serializer {
 
     /**
      * Read data from a JSON file and deserialize it into an object.
@@ -46,5 +45,4 @@ class JSONSerializer (private val file: File):Serializer {
         outputStream.writeObject(obj)
         outputStream.close()
     }
-
 }

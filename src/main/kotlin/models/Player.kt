@@ -16,5 +16,4 @@ data class Player(
     var name: String,
     var rounds: List<Rounds>,
     var noAttempts: Int
-) {
-}
+)

@@ -7,10 +7,13 @@ import utils.ScannerInput
 import java.io.File
 import java.lang.System.exit
 
-
 private val logger = KotlinLogging.logger {}
 private val roundAPI = RoundAPI(XMLSerializer(copyResourceToFile("rounds.xml")))
 
+// this is where the xml file is location to be loaded and saved from is determined, instance of file object created.
+// for rounds.xml files in resources.
+// Get the XML file as an InputStream using the classpath, allows it to load from the jar when built
+// code made by chatGPT
 fun copyResourceToFile(fileName: String): File {
     val classLoader = XMLSerializer::class.java.classLoader
     val inputStream = requireNotNull(classLoader.getResourceAsStream(fileName)) {
@@ -27,17 +30,8 @@ fun copyResourceToFile(fileName: String): File {
 
     return tempFile
 }
-//this is where the xml file is location to be loaded and saved from is determined, instance of file object created.
-//for xml files in resources.
 
-/*val resourceUrl = XMLSerializer::class.java.getResource("/rounds.xml")
-val file = File(resourceUrl.toURI())
-
-var roundAPI = RoundAPI(XMLSerializer(file))*/
-// Get the XML file as an InputStream using the classpath
-
-//var roundAPI = RoundAPI(XMLSerializer(File("xmlFiles/rounds.xml")))
-
+// var roundAPI = RoundAPI(XMLSerializer(File("xmlFiles/rounds.xml")))
 
 /**
  * The main function to run the application.
@@ -47,8 +41,6 @@ var roundAPI = RoundAPI(XMLSerializer(file))*/
  * @param args Command-line arguments (not used in this application).
  */
 fun main(args: Array<String>) {
-
-
     loadRound()
     runMenu()
 }
@@ -58,8 +50,9 @@ fun main(args: Array<String>) {
  *
  * @return The selected option.
  */
-fun mainMenu() : Int {
-    return ScannerInput.readNextInt(""" 
+fun mainMenu(): Int {
+    return ScannerInput.readNextInt(
+        """ 
          > ----------------------------------
          > |         Main Menu        
          > ----------------------------------
@@ -69,23 +62,24 @@ fun mainMenu() : Int {
          > ----------------------------------         
          > |   0) Exit                      
          > ----------------------------------
-         > ==>> """.trimMargin(">"))
+         > ==>> """.trimMargin(">")
+    )
 }
 
 /**
  * Executes the chosen action based on the main menu option selected by the user.
  */
-fun runMenu(){
+fun runMenu() {
     do {
         val option = mainMenu()
-        when(option) {
+        when (option) {
             1 -> runPlayerMenu()
             2 -> runRoundMenu()
             3 -> tryQuiz()
             0 -> exitApp()
-            else -> println("Invalid option entered: ${option}")
+            else -> println("Invalid option entered: $option")
         }
-    } while(true)
+    } while (true)
 }
 
 /**
@@ -93,8 +87,9 @@ fun runMenu(){
  *
  * @return The selected option.
  */
-fun roundMenu() : Int {
-    return ScannerInput.readNextInt(""" 
+fun roundMenu(): Int {
+    return ScannerInput.readNextInt(
+        """ 
          > ----------------------------------
          > |Round and Questions CRUD Menu         
          > ----------------------------------  
@@ -117,7 +112,8 @@ fun roundMenu() : Int {
          > |   0) Exit   
          >    -1)Back to Main Menu               
          > ----------------------------------
-         > ==>> """.trimMargin(">"))
+         > ==>> """.trimMargin(">")
+    )
 }
 
 /**
@@ -126,7 +122,7 @@ fun roundMenu() : Int {
 fun runRoundMenu() {
     do {
         val option = roundMenu()
-        when(option) {
+        when (option) {
             1 -> addRound()
             2 -> listRounds()
             3 -> updateRound()
@@ -139,16 +135,13 @@ fun runRoundMenu() {
             10 -> loadRound()
             0 -> exitApp()
             -1 -> println("Going back to main menu")
-            else -> println("Invalid option entered: ${option}")
+            else -> println("Invalid option entered: $option")
         }
     } while (option != 0 && option != -1)
 }
 
-
-
-
-//-------------------------------------------------------------------
-//Questions functions
+// -------------------------------------------------------------------
+// Questions functions
 /**
  * Adds a new question to a selected round.
  *
@@ -168,11 +161,13 @@ private fun addQuestionToRound() {
             possibleAnswers.add(newPossibleAnswer)
             println("Possible answers so far")
             possibleAnswers.forEach { println(it) }
-            moreAnswers = ScannerInput.readNextInt("""
+            moreAnswers = ScannerInput.readNextInt(
+                """
                 Do you want to enter another possible value:
                 1. Yes 
                 2. No
-            """.trimIndent())
+                """.trimIndent()
+            )
         } while (moreAnswers == 1)
 
         if (round.addQuestion(Questions(1, questionText, possibleAnswers, correctAnswer, difficulty))) {
@@ -531,19 +526,19 @@ fun tryQuiz() {
     Our quiz has multiple rounds based on different things such as History or Geography
     To get started on the quiz please choose a round to try out
     --------------------------------------------------------------------------------------
-""".trimIndent()
+        """.trimIndent()
     )
     val chosenRound = askUserToChooseRoundByTitle()
     if (chosenRound != null && chosenRound.questions.isNotEmpty()) {
         println(
             """
         You have chosen the ${chosenRound.roundTitle} Round
-    """.trimIndent()
+            """.trimIndent()
         )
         chosenRound.questionsAttempted++
         var numberOfCorrectAnswers = 0
         val numberOfQuestions = chosenRound.numberOfQuestions()
-        //first display question 1,
+        // first display question 1,
         var index: Int = 0
         while (index < numberOfQuestions) {
             println(chosenRound.questions[index]!!.questionText)
@@ -561,7 +556,6 @@ fun tryQuiz() {
             println("Congratulations. You beat ${chosenRound.roundTitle} and got everything correct in ${chosenRound.questionsAttempted} attempts.")
         }
         println("Goodbye")
-
     } else if (chosenRound == null) {
         println("That round does not exist")
     } else if (chosenRound.questions.isEmpty()) {
@@ -575,7 +569,8 @@ fun tryQuiz() {
  * @return The selected option.
  */
 fun playerMenu(): Int {
-    return ScannerInput.readNextInt(""" 
+    return ScannerInput.readNextInt(
+        """ 
          > ----------------------------------
          > |Player Menu (not functional yet)       
          > ----------------------------------  
@@ -587,7 +582,8 @@ fun playerMenu(): Int {
          > |   0) Exit   
          >    -1) Back to Main Menu               
          > ----------------------------------
-         > ==>> """.trimMargin(">"))
+         > ==>> """.trimMargin(">")
+    )
 }
 
 /**
